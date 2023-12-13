@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src/**/*.{js,jsx,ts,tsx}",],
+    content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+    ],
     theme: {
         extend: {
             height: {
@@ -17,13 +19,12 @@ module.exports = {
                 main: '#080A1A',
                 subMain: '#F20000',
                 dry: '#0B0F29',
-                star: '#FFB000',
-                text: '#cococo',
+                star: "#FFB000",
+                text: "#cococo",
                 border: '#4b5563',
-                dryGray: '#EOD5D5',
+                dryGray: '#E0D5D5',
             },
         },
-    },
-    plugins: [require('@tailwindcss/line-clamp')],
+        plugins: [require('@tailwindcss/line-clamp')],
+    }
 }
-
