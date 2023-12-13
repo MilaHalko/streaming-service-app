@@ -14,6 +14,7 @@ module.exports = {
             },
             screens: {
                 xs: '475px',
+                lg: '500px',
             },
             colors: {
                 main: '#080A1A',
