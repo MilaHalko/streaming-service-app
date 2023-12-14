@@ -21,7 +21,7 @@ module.exports = {
                 subMain: '#F20000',
                 dry: '#0B0F29',
                 star: "#FFB000",
-                text: "#cococo",
+                text: "#c0c0c0",
                 border: '#4b5563',
                 dryGray: '#E0D5D5',
             },
