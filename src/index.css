@@ -17,8 +17,19 @@ input:focus, textarea:focus, select:focus{
 }
 
 /* Custom Classes for Tailwind */
+
+.font-hammersmith {
+    font-family: 'Hammersmith One', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
 .linear-bg {
     background: linear-gradient(269.82deg, #07091c00 0.17%, #080a1ad6 99.87%);
+}
+
+.darker-bg {
+    @apply absolute inset-0 bg-black bg-opacity-50;
 }
 
 .hovers {
