@@ -58,7 +58,7 @@ function Footer() {
                             <img src='/images/logos/logo-red.png' alt='logo' className='w-2/4 object-contain h-15'/>
                         </Link>
                         <p className='leading-7 text-sm text-border mt-3'>
-                            <span>Kyiv, Ukraine 02000</span>
+                            <span>KPI Campus, 37 Peremohy Ave, Kyiv, Ukraine 03056</span>
                             <br/>
                             <span>Tell: +38 098 765 4321</span>
                             <br/>
