@@ -1,118 +1,118 @@
 export const Genres = [
     {
         id: '1',
-        genre: 'Action'
+        title: 'Action'
     },
     {
         id: '2',
-        genre: 'Adventure'
+        title: 'Adventure'
     },
     {
         id: '3',
-        genre: 'Animation'
+        title: 'Animation'
     },
     {
         id: '4',
-        genre: 'Biography'
+        title: 'Biography'
     },
     {
         id: '5',
-        genre: 'Children'
+        title: 'Children'
     },
     {
         id: '6',
-        genre: 'Comedy'
+        title: 'Comedy'
     },
     {
         id: '7',
-        genre: 'Crime'
+        title: 'Crime'
     },
     {
         id: '8',
-        genre: 'Documentary'
+        title: 'Documentary'
     },
     {
         id: '9',
-        genre: 'Drama'
+        title: 'Drama'
     },
     {
         id: '10',
-        genre: 'Family'
+        title: 'Family'
     },
     {
         id: '11',
-        genre: 'Fantasy'
+        title: 'Fantasy'
     },
     {
         id: '12',
-        genre: 'Film Noir'
+        title: 'Film Noir'
     },
     {
         id: '13',
-        genre: 'History'
+        title: 'History'
     },
     {
         id: '14',
-        genre: 'Horror'
+        title: 'Horror'
     },
     {
         id: '15',
-        genre: 'Music'
+        title: 'Music'
     },
     {
         id: '16',
-        genre: 'Musical'
+        title: 'Musical'
     },
     {
         id: '17',
-        genre: 'Mystery'
+        title: 'Mystery'
     },
     {
         id: '18',
-        genre: 'Narrative'
+        title: 'Narrative'
     },
     {
         id: '19',
-        genre: 'Romance'
+        title: 'Romance'
     },
     {
         id: '20',
-        genre: 'Sci-Fi'
+        title: 'Sci-Fi'
     },
     {
         id: '21',
-        genre: 'Sport'
+        title: 'Sport'
     },
     {
         id: '22',
-        genre: 'Spy'
+        title: 'Spy'
     },
     {
         id: '23',
-        genre: 'Superhero'
+        title: 'Superhero'
     },
     {
         id: '24',
-        genre: 'Thriller'
+        title: 'Thriller'
     },
     {
         id: '25',
-        genre: 'War'
+        title: 'War'
     },
     {
         id: '26',
-        genre: 'Western'
+        title: 'Western'
     },
     {
         id: '27',
-        genre: 'Mafia'
+        title: 'Mafia'
     },
     {
         id: '28',
-        genre: 'Anime'
+        title: 'Anime'
     },
     {
         id: '29',
-        genre: 'Adaptation'
+        title: 'Adaptation'
     }
 ];
