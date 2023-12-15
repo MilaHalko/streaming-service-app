@@ -26,6 +26,12 @@ function TopRated() {
                     speed={800}
                     loop={true}
                     modules={[Navigation, Autoplay]}
+                    breakpoints={{
+                        0: {slidesPerView: 1},
+                        400: {slidesPerView: 2},
+                        768: {slidesPerView: 3},
+                        1024: {slidesPerView: 4},
+                    }}
                 >
                     {Movies.map((movie, index) => (
                         <SwiperSlide key={index}>

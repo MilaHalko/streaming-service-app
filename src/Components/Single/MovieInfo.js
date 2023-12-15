@@ -19,8 +19,8 @@ function MovieInfo({movie}) {
                             {/* Title */}
                             <h1 className='xl:text-4xl capitalize font-sans text-2xl font-bold'>{movie?.name}</h1>
                             {/* Stats */}
-                            <div className='flex items-center gap-4 font-medium text-dryGray'>
-                                <div className='flex-colo bg-subMain text-xs px-2 py-1'>
+                            <div className='sm:flex items-center gap-4 font-medium text-dryGray'>
+                                <div className='flex flex-colo bg-subMain text-xs px-2 py-1 my-1 max-w-fit mb'>
                                     HD 4K
                                 </div>
                                 <FlexMovieItems movie={movie && movie}/>
@@ -40,7 +40,7 @@ function MovieInfo({movie}) {
                                 </div>
                                 {/* Watch Button */}
                                 <div className='sm:col-span-2 col-span-3 flex justify-end font-medium text-sm'>
-                                    <Link to={`/watch/${movie?.name}`} className='bg-dry hover:bg-subMain transitions border-2 border-subMain rounded-full flex-rows gap-4 w-full sm:py-3'>
+                                    <Link to={`/watch/${movie?.name}`} className='bg-dry py-4 hover:bg-subMain transitions border-2 border-subMain rounded-full flex-rows gap-4 w-full sm:py-3'>
                                         <FaPlay className='w-3 h-3'/> Watch Now
                                     </Link>
                                 </div>
