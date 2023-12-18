@@ -184,6 +184,10 @@ export const Actors = [
         image: "Scarlett_Johansson.jpg",
     },
     {
+        name: "Serhii Prytula",
+        image: "Serhii_Prytula.jpg",
+    },
+    {
         name: "Shameik Moore",
         image: "Shameik_Moore.jpg",
     },
