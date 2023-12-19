@@ -13,9 +13,9 @@ function MovieInfo({movie}) {
                     <div className='xl:col-span-1 w-full xl:order-none order-last h-header bg-dry border border-gray-800 rounded-lg overflow-hidden'>
                         <img src={`/images/movies/${movie?.image}`} alt={movie?.name} className='w-full h-full object-cover'/>
                     </div>
-                    <div className='col-span-2 md:grid grid-cols-5 gap-4 items-center'>
+                    <div className='col-span-2 items-center'>
                         {/* Movie Info */}
-                        <div className='col-span-3 flex flex-col gap-10'>
+                        <div className='flex flex-col gap-10'>
                             {/* Title */}
                             <h1 className='xl:text-4xl capitalize font-sans text-2xl font-bold'>{movie?.name}</h1>
                             {/* Stats */}
@@ -27,15 +27,9 @@ function MovieInfo({movie}) {
                             </div>
                             {/* Description */}
                             <p className='text-text text-sm leading-7'>{movie?.description}</p>
-                            <div className='grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg'>
-                                {/* Share */}
-                                <div className='col-span-1 flex-colo border-r border-border'>
-                                    <button className='w-10 h-10 flex-colo rounded-lg bg-white bg-opacity-20'>
-                                        <FaShareAlt/>
-                                    </button>
-                                </div>
+                            <div className='grid grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg'>
                                 {/* Language */}
-                                <div className='col-span-2 flex-colo font-medium text-sm'>
+                                <div className='col-span-1 flex-colo font-medium text-sm'>
                                     <p>Language: <span className='ml-2 truncate'>{movie?.language}</span></p>
                                 </div>
                                 {/* Watch Button */}
@@ -45,14 +39,6 @@ function MovieInfo({movie}) {
                                     </Link>
                                 </div>
                             </div>
-                        </div>
-                        {/* Download */}
-                        <div className='col-span-2 md:mt-0 mt-2 flex justify-end'>
-                            <button className='md:w-1/4 w-full relative flex-colo bg-subMain hover:bg-transparent border-2 border-subMain transitions md:h-64 h-20 rounded font-medium'>
-                                <div className='flex-rows gap-6 text-md uppercase tracking-widest absolute md:rotate-90'>
-                                    Download <FiLogIn className='w-6 h-6'/>
-                                </div>
-                            </button>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import Titles from "../Titles";
 import {FaUserFriends} from "react-icons/fa";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {Actors} from "../../Data/actors";
+import {ActorsData} from "../../Data/actorsData";
 
 function MovieCasts() {
     return (
@@ -23,7 +23,7 @@ function MovieCasts() {
                             1280: {slidesPerView: 5},
                         }}
                 >
-                    {Actors.map((actor, index) => (
+                    {ActorsData.map((actor, index) => (
                         <SwiperSlide key={index}>
                             <div
                                 className="w-full p-3 italic text-xs text-text rounded flex-colo bg-dry border border-gray-800">

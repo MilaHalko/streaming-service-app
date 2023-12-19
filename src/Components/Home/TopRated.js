@@ -4,7 +4,7 @@ import {BsBookmarkStarFill, BsCaretLeftFill, BsCaretRightFill,}
 from "react-icons/bs";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation} from "swiper/modules";
-import {Movies} from "../../Data/movies";
+import {MoviesData} from "../../Data/moviesData";
 import 'swiper/css';
 import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";
@@ -33,7 +33,7 @@ function TopRated() {
                         1024: {slidesPerView: 4},
                     }}
                 >
-                    {Movies.map((movie, index) => (
+                    {MoviesData.map((movie, index) => (
                         <SwiperSlide key={index}>
                             <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden">
                                 <img src={`/images/movies/${movie.image}`} alt={movie.name}

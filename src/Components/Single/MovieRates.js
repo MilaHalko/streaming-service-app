@@ -3,7 +3,7 @@ import Titles from "../Titles";
 import {BsBookmarkStarFill} from "react-icons/bs";
 import {Message, Select} from "../UsedInputs";
 import Rating from "../Stars";
-import {Actors} from "../../Data/actors";
+import {ActorsData} from "../../Data/actorsData";
 
 function MovieRates({movie}) {
     const Ratings = [
@@ -34,7 +34,7 @@ function MovieRates({movie}) {
     ]
 
     const [rating, setRating] = useState(0);
-    const Users = Actors;
+    const Users = ActorsData;
     const UserImagesFolder = "/images/actors/";
     const DummyComments = [
         {

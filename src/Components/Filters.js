@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react'
-import {Genres} from "../Data/genres";
+import {GenresData} from "../Data/genresData";
 import {Listbox, Transition} from "@headlessui/react";
 import {FaAngleDown, FaCheck} from "react-icons/fa";
 
@@ -43,7 +43,7 @@ function Filters() {
         {
             value: genre,
             onchange: setGenre,
-            items: Genres
+            items: GenresData
         },
         {
             value: year,

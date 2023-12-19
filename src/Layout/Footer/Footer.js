@@ -13,7 +13,7 @@ function Footer() {
             ]
         },
         {
-            title: 'Top Categories',
+            title: 'Top Genres',
             links: [
                 {title: 'Action', url: '#'},
                 {title: 'Comedy', url: '#'},

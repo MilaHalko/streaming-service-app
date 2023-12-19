@@ -41,9 +41,6 @@ function NavBar() {
                     </NavLink>
                     <NavLink to='/favorites' className={`${Hover} relative`}>
                         <FaHeart className='w-6 h-6'/>
-                        {/*
-                        <div className='w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1'>
-                        */}
                         <div className='w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-3 -right-3.5'>
                             5
                         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import FlexMovieItems from "../FlexMovieItems";
-import {Movies} from "../../Data/movies";
+import {MoviesData} from "../../Data/moviesData";
 import {Link} from "react-router-dom";
 import {FaHeart} from "react-icons/fa";
 
@@ -18,7 +18,7 @@ function Banner() {
                 autoplay={{delay: 4000, disableOnInteraction: false}}
                 className="w-full xl:h-96 bg-dry lg:h-64 h-48 overflow-hidden"
             >
-                {Movies.slice(10, 15).map((movie, index) => (
+                {MoviesData.slice(10, 15).map((movie, index) => (
                     <SwiperSlide key={index} className="relative rounded">
                         <img src={`/images/movies/${movie.image}`} alt={movie.name}
                              className="w-full h-full object-cover"/>
