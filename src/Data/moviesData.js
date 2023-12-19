@@ -1,4 +1,4 @@
-export const Movies = [
+export const MoviesData = [
     {
         name: "A Haunting in Venice",
         description: "In post-World War II Venice, Poirot, now retired and living in his own exile, reluctantly attends a seance. But when one of the guests is murdered, it is up to the former detective to once again uncover the killer.",

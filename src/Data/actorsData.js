@@ -1,4 +1,4 @@
-export const Actors = [
+export const ActorsData = [
     {
         name: "Andrew Barth Feldman",
         image: "Andrew_Barth_Feldman.jpg",
