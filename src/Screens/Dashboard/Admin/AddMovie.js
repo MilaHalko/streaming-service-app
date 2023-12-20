@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import SideBar from "../SideBar";
 import {Input, Message, Select} from "../../../Components/UsedInputs";
 import Uploader from "../../../Components/Uploader";
@@ -7,10 +7,21 @@ import {ActorsData} from "../../../Data/actorsData";
 import {MdDelete} from "react-icons/md";
 import {FaEdit} from "react-icons/fa";
 import {ImUpload} from "react-icons/im";
+import ActorModal from "../../../Components/Modals/ActorModal";
 
 function AddMovie() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [actor, setActor] = useState(null);
+
+    useEffect(() => {
+        if (modalOpen === false) {
+            setActor();
+        }
+    }, [modalOpen]);
+
     return (
         <SideBar>
+            <ActorModal modalOpen={modalOpen} setModalOpen={setModalOpen} actor={actor}/>
             <div className="flex flex-col gap-6">
                 <h2 className="text-xl font-bold">Add Movie</h2>
 
@@ -54,10 +65,11 @@ function AddMovie() {
                     <Uploader image={false}/>
                 </div>
 
-                {/* CAST */}
+                {/* ACTOR */}
                 <div className="w-full">
-                    <button className="w-full py-6 mb-4 bg-main border border-subMain border-dashed text-white rounded">
-                        Add Cast
+                    <button onClick={() => setModalOpen(true)}
+                            className="w-full py-6 mb-4 bg-main border border-subMain border-dashed text-white rounded">
+                        Add Actor
                     </button>
                     <div className="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-4 grid-cols-2 gap-2">
                         {
@@ -68,7 +80,8 @@ function AddMovie() {
                                          className="w-full h-28 object-cover rounded mb-2"/>
                                     <p>{actor.name}</p>
                                     <div className="flex-rows mt-2 w-full gap-2">
-                                        <button className="w-6 h-6 flex-colo border border-border text-subMain rounded">
+                                        <button onClick={() => {setActor(actor); setModalOpen(true);}}
+                                            className="w-6 h-6 flex-colo border border-border text-subMain rounded">
                                             <MdDelete/>
                                         </button>
                                         <button className="w-6 h-6 flex-colo border border-border text-green-600 rounded">
