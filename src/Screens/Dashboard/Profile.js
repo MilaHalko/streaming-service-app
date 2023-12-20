@@ -1,6 +1,5 @@
 import React from 'react'
 import SideBar from "./SideBar";
-import Layout from "../../Layout/Layout";
 import Uploader from "../../Components/Uploader";
 import {Input} from "../../Components/UsedInputs";
 

@@ -12,7 +12,7 @@ const Rows = (data, index, users, OnEdit) => {
             {users ? (<>
                     <td className={`${Text}`}>
                         <div className="w-12 bg-dry border border-border h-12 rounded overflow-hidden">
-                            <img src={`/images/users/${data.imagedm ? data.image : "user.jpg"}`}
+                            <img src={`/images/users/${data.image ? data.image : "user.jpg"}`}
                                  alt={data?.FullName}
                                  className="h-full w-full object-cover"/>
                         </div>

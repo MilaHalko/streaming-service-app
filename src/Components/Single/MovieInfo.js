@@ -1,8 +1,7 @@
 import React from 'react'
 import FlexMovieItems from "../FlexMovieItems";
-import {FaPlay, FaShareAlt} from "react-icons/fa";
+import {FaPlay} from "react-icons/fa";
 import {Link} from "react-router-dom";
-import {FiLogIn} from "react-icons/fi";
 
 function MovieInfo({movie}) {
     return (
