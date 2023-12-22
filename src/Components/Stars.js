@@ -1,9 +1,8 @@
 import React from 'react'
 import {FaRegStar, FaStar, FaStarHalfAlt} from "react-icons/fa";
 
-function Rating({valueBy100}) {
-    const value = valueBy100 / 20;
-    console.log(value);
+function Rating({valueBy10}) {
+    const value = valueBy10 / 2.0;
     return (
         <>
             <span>
