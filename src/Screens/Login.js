@@ -13,7 +13,7 @@ function Login() {
                     <Input label='Email' placeholder='mediatoria@gmail.com' type='email' bg={true}/>
                     <Input label='Password' placeholder='**********' type='password' bg={true}/>
                     <Link to='/dashboard' className='bg-subMain transitions hover:bg-main flex-rows gap-2 text-white p-3 rounded-lg w-full mt-3'>
-                        <FiLogIn/> Sign In
+                        <FiLogIn/> Login
                     </Link>
                     <p className='text-center text-border'>
                         Don't have an account? {" "}

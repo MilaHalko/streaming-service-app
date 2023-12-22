@@ -4,16 +4,26 @@ import {BsBookmarkStarFill, BsCaretLeftFill, BsCaretRightFill,}
 from "react-icons/bs";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation} from "swiper/modules";
-import {MoviesData} from "../../Data/moviesData";
 import 'swiper/css';
 import {FaHeart} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import Rating from "../Stars";
+import axios from "axios";
+import requests from "../../Requests";
 
 function TopRated() {
+    const [Movies, setMovies] = React.useState([]);
     const [nextEl, setNextEl] = useState(null);
     const [prevEl, setPrevEl] = useState(null);
-    const caretClassNames = "hover:bg-dry transitions text-sm rounded w-8 h-8 flex-colo bg-subMain text-white";
+
+    React.useEffect(() => {
+        axios.get(requests.requestTopRated).then((response) => {
+            setMovies(response.data.results);
+        })
+    }, [requests.requestTopRated]);
+
+    const buttonCaretClass = 'h-10 w-10 text-xl hover:text-2xl flex-colo';
+
     return (
         <div className="my-16">
             <Titles title="Top Rated" Icon={BsBookmarkStarFill}/>
@@ -33,11 +43,18 @@ function TopRated() {
                         1024: {slidesPerView: 4},
                     }}
                 >
-                    {MoviesData.map((movie, index) => (
+                    {Movies.map((movie, index) => (
                         <SwiperSlide key={index}>
                             <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden">
-                                <img src={`/images/movies/${movie.image}`} alt={movie.name}
-                                     className="w-full h-full object-cover rounded-lg"/>
+                                {
+                                    movie?.backdrop_path === null ? (
+                                        <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie?.title}
+                                             className="w-full h-full object-cover rounded-lg"/>
+                                    ) : (
+                                        <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie?.title}
+                                             className="w-full h-full object-cover rounded-lg"/>
+                                    )
+                                }
                                 <div
                                     className="px-4 hovers gap-6 text-center absolute bg-black bg-opacity-70 top-0 bottom-0 left-0 right-0">
                                     <button
@@ -45,22 +62,22 @@ function TopRated() {
                                         <FaHeart/>
                                     </button>
                                     <Link className="font-semibold text-xl truncated line-clamp-2"
-                                          to={`/movie/${movie.name}`}>
-                                        {movie.name}
+                                          to={`/movie/${movie.title}`}>
+                                        {movie.title}
                                     </Link>
                                     <div className="flex gap-2 text-star">
-                                        <Rating valueBy100={(movie.criticRate + movie.audienceRate) / 2} icon/>
+                                        <Rating valueBy10={movie.vote_average} icon/>
                                     </div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <div className='w-full px-1 flex-rows gap-6 pt-12'>
-                    <button className={caretClassNames} ref={(node) => setPrevEl(node)}>
+                <div className='w-full px-1 flex-rows gap-3 pt-12'>
+                    <button ref={(node) => setPrevEl(node)} className={buttonCaretClass}>
                         <BsCaretLeftFill/>
                     </button>
-                    <button className={caretClassNames} ref={(node) => setNextEl(node)}>
+                    <button ref={(node) => setNextEl(node)} className={buttonCaretClass}>
                         <BsCaretRightFill/>
                     </button>
                 </div>

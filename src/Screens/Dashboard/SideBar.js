@@ -35,8 +35,8 @@ function SideBar({children}) {
             icon: FaUsers
         },
         {
-            name: "Update Profile",
-            link: "/profile",
+            name: "Account Settings",
+            link: "/account",
             icon: FiSettings
         },
         {

@@ -3,7 +3,7 @@ import SideBar from "./SideBar";
 import Uploader from "../../Components/Uploader";
 import {Input} from "../../Components/UsedInputs";
 
-function Profile() {
+function Account() {
     return (
         <SideBar>
             <div className="flex flex-col gap-6">
@@ -26,4 +26,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default Account
