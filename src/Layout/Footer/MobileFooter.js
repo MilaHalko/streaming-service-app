@@ -13,10 +13,11 @@ function MobileFooter() {
     const Hover = ({isActive}) => isActive ? `${active} ${inactive}` : `${inactive} text-white`;
     return (
         <>
-            <div className="flex flex-col h-full justify-between align-middle bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full">
+            {/*<div className="flex flex-col h-full justify-between align-middle bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full">*/}
+            <div className="flex flex-col w-full h-full justify-between align-middle mt-3">
                 <MenuDrawer drawerOpen={mobileDrawer} toggleDrawer={toggleDrawer}/>
             </div>
-            <footer className="lg:hidden fixed z-50 bottom-0 w-full px-1 shadow-black shadow-2xl">
+            <footer className="lg:hidden fixed z-50 bottom-0 w-full px-1 shadow-black shadow-lg">
                 <div className="bg-dry rounded-md flex-btn w-full py-1 xs:px-9 px-1">
                     <NavLink to="/movies" className={Hover}>
                         <BsCollectionPlay/>

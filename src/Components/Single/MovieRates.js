@@ -89,7 +89,7 @@ function MovieRates({movie}) {
                         <Select label="Select Rating" options={Ratings}
                                 onChange={(e) => setRating(e.target.value * 20)}/>
                         <div className="flex mt-4 text-lg gap-2 text-star">
-                            <Rating valueBy100={rating}/>
+                            <Rating valueBy10={rating}/>
                         </div>
                     </div>
                     {/* Message */}
@@ -120,7 +120,7 @@ function MovieRates({movie}) {
                                     </div>
                                     <div
                                         className="col-span-3 flex-rows border-l border-border text-xs gap-1 text-star">
-                                        <Rating valueBy100={randomComment?.rating * 20}/>
+                                        <Rating valueBy10={randomComment?.rating * 20}/>
                                     </div>
                                 </div>
                             );

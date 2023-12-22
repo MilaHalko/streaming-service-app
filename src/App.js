@@ -9,7 +9,7 @@ import SingleMovie from "./Screens/SingleMovie";
 import WatchPage from "./Screens/WatchPage";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
-import Profile from "./Screens/Dashboard/Profile";
+import Account from "./Screens/Dashboard/Account";
 import AOS from "aos";
 import Password from "./Screens/Dashboard/Password";
 import FavouriteMovies from "./Screens/Dashboard/FavouriteMovies";
@@ -20,33 +20,36 @@ import Users from "./Screens/Dashboard/Admin/Users";
 import AddMovie from "./Screens/Dashboard/Admin/AddMovie";
 import ScrollOnTop from "./Screens/ScrollOnTop";
 import DrawerContext from "./Context/DrawerContext";
+import {AuthContextProvider} from "./Context/AuthContext";
 
 function App() {
     AOS.init();
     return (
-        <DrawerContext>
-            <ScrollOnTop>
-                <Routes>
-                    <Route path="/" element={<HomeScreen/>}/>
-                    <Route path="/about-us" element={<AboutUs/>}/>
-                    <Route path="/contact-us" element={<ContactUs/>}/>
-                    <Route path="/movies" element={<MoviesPage/>}/>
-                    <Route path="/movie/:id" element={<SingleMovie/>}/>
-                    <Route path="/watch/:id" element={<WatchPage/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/register" element={<Register/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/password" element={<Password/>}/>
-                    <Route path="/favourites" element={<FavouriteMovies/>}/>
-                    <Route path="/movieslist" element={<MoviesList/>}/>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/genres" element={<Genres/>}/>
-                    <Route path="/users" element={<Users/>}/>
-                    <Route path="/addmovie" element={<AddMovie/>}/>
-                    <Route path="*" element={<NotFound/>}/>
-                </Routes>
-            </ScrollOnTop>
-        </DrawerContext>
+        <AuthContextProvider>
+            <DrawerContext>
+                <ScrollOnTop>
+                    <Routes>
+                        <Route path="/" element={<HomeScreen/>}/>
+                        <Route path="/about-us" element={<AboutUs/>}/>
+                        <Route path="/contact-us" element={<ContactUs/>}/>
+                        <Route path="/movies" element={<MoviesPage/>}/>
+                        <Route path="/movie/:id" element={<SingleMovie/>}/>
+                        <Route path="/watch/:id" element={<WatchPage/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/register" element={<Register/>}/>
+                        <Route path="/account" element={<Account/>}/>
+                        <Route path="/password" element={<Password/>}/>
+                        <Route path="/favourites" element={<FavouriteMovies/>}/>
+                        <Route path="/movieslist" element={<MoviesList/>}/>
+                        <Route path="/dashboard" element={<Dashboard/>}/>
+                        <Route path="/genres" element={<Genres/>}/>
+                        <Route path="/users" element={<Users/>}/>
+                        <Route path="/addmovie" element={<AddMovie/>}/>
+                        <Route path="*" element={<NotFound/>}/>
+                    </Routes>
+                </ScrollOnTop>
+            </DrawerContext>
+        </AuthContextProvider>
     )
 }
 
