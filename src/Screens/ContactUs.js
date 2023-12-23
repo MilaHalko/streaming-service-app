@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from "../Layout/Layout";
-import Head from "../Components/Head";
+import HeadImage from "../Components/HeadImage";
 import {FiMail, FiMapPin, FiPhoneCall} from "react-icons/fi";
 
 function ContactUs() {
@@ -32,9 +32,9 @@ function ContactUs() {
     ];
     return (
         <Layout>
-            <div className="min-h-screen container mx-auto px-2 my-6">
-                <Head title='Contact Us'/>
-                <div className="grid mg:grid-cols-2 gap-6 lg:my-20 my-10 lg:grid-cols-3 xl:gap-8">
+            <HeadImage title='Contact Us'/>
+            <div className="px-8 mb-6 md:py-10 py-5">
+                <div className="grid mg:grid-cols-2 gap-6 lg:grid-cols-3 xl:gap-8">
                     {ContactData.map((item) => (
                         <div key={item.id} className='border border-border flex-colo p-10 bg-dry rounded-lg text-center'>
                             <span className='flex-colo w-20 h-20 mb-4 rounded-full bg-main text-subMain text-2xl'>

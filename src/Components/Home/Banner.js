@@ -37,9 +37,8 @@ function Banner({fetchUrl}) {
                                      className="w-full h-full object-cover"/>
                             )
                         }
-                        <div
-                            className="absolute linear-bg xl:pl-52 sm:pl-32 pl-8 top-0 bottom-0 left-0 right-0 flex flex-col justify-center lg:gap-8 md:gap-5 gap-4">
-                            <h1 className="xl:text-4xl truncate capitalize font-sans sm:text-2xl text-xl font-bold">
+                        <div className="absolute linear-bg xl:pl-52 sm:pl-32 pl-8 top-0 bottom-0 left-0 right-0 flex flex-col justify-center lg:gap-8 md:gap-5 gap-4">
+                            <h1 className="xl:text-4xl truncate capitalize font-sans sm:text-2xl text-xl font-bold pb-1">
                                 {movie.title}
                             </h1>
                             <div className="flex gap-5 items-center text-dryGray">

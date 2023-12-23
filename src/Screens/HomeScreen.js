@@ -9,7 +9,7 @@ import requests from "../Requests";
 function HomeScreen() {
     return (
         <Layout>
-            <div className='container mx-auto min-h-screen px-2 mb-6'>
+            <div className='px-5 mb-6'>
                 <Banner fetchUrl={requests.requestNowPlaying}/>
                 <PopularMovies/>
                 <Promos/>

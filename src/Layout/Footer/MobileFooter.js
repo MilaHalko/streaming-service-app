@@ -17,8 +17,8 @@ function MobileFooter() {
             <div className="flex flex-col w-full h-full justify-between align-middle mt-3">
                 <MenuDrawer drawerOpen={mobileDrawer} toggleDrawer={toggleDrawer}/>
             </div>
-            <footer className="lg:hidden fixed z-50 bottom-0 w-full px-1 shadow-black shadow-lg">
-                <div className="bg-dry rounded-md flex-btn w-full py-1 xs:px-9 px-1">
+            <footer className="lg:hidden fixed z-50 bottom-0 w-full shadow-black shadow-lg">
+                <div className="bg-dry flex-btn w-full py-1 xs:px-9 px-1">
                     <NavLink to="/movies" className={Hover}>
                         <BsCollectionPlay/>
                     </NavLink>
@@ -36,7 +36,6 @@ function MobileFooter() {
                             className={inactive}>
                         <CgMenuBoxed/>
                     </button>
-
                 </div>
             </footer>
         </>
