@@ -11,22 +11,25 @@ export const Message = ({label, placeholder}) => {
 export const Select = ({label, options, onChange, multiple = false}) => {
     return (
         <>
-        <label className="text-border font-semibold">{label}</label>
-        <select className="w-full mt-2 px-6 py-4 text-text bg-main border border-border rounded" multiple={multiple} onChange={onChange}>
-            {options.map((o, index) => (<option key={index} value={o.value}>{o.title}</option>))}
-        </select>
+            <label className="text-border font-semibold">{label}</label>
+            <select className="w-full mt-2 px-6 py-4 text-text bg-main border border-border rounded" multiple={multiple}
+                    onChange={onChange}>
+                {options.map((o, index) => (<option key={index} value={o.value}>{o.title}</option>))}
+            </select>
         </>
     )
 };
 
-export const Input = ({label, placeholder, type, bg}) => {
+export const Input = ({label, placeholder, type, bg, onChange, autoComplete = 'off'}) => {
     return (
         <div className="text-sm w-full">
-            <label className="text-border font-semibold">{label}</label>
+            <label className="text-border font-semibold text-base">{label}</label>
             <input required
                    type={type}
                    placeholder={placeholder}
-                   className={`w-full text-sm mt-2 p-3 border border-border rounded text-white ${bg ? 'bg-main' : 'bg-dry'}`}/>
+                   autoComplete={autoComplete}
+                   onChange={onChange}
+                   className={`w-full mt-1 p-3 text-base border border-border rounded text-white ${bg ? 'bg-main' : 'bg-dry'}`}/>
         </div>
     )
 };
