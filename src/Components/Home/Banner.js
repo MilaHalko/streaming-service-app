@@ -4,6 +4,7 @@ import {Autoplay} from "swiper/modules";
 import FlexMovieItems from "../FlexMovieItems";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import MovieImage from "../MovieImage";
 
 function Banner({fetchUrl}) {
     const [Movies, setMovies] = React.useState([]);
@@ -27,16 +28,7 @@ function Banner({fetchUrl}) {
             >
                 {Movies?.slice(10, 15).map((movie, index) => (
                     <SwiperSlide key={index} className="relative rounded">
-                        {
-                            movie?.backdrop_path === null ? (
-                                <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie?.title}
-                                     className="w-full h-full object-cover"/>
-                            ) : (
-                                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                                     alt={movie?.title}
-                                     className="w-full h-full object-cover"/>
-                            )
-                        }
+                        <MovieImage movie={movie}/>
                         <div className="absolute linear-bg xl:pl-52 sm:pl-32 pl-8 top-0 bottom-0 left-0 right-0 flex flex-col justify-center lg:gap-8 md:gap-5 gap-4">
                             <h1 className="xl:text-4xl truncate capitalize font-sans sm:text-2xl text-xl font-bold pb-1">
                                 {movie.title}

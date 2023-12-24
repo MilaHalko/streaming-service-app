@@ -1,16 +1,19 @@
 import React, {useContext} from 'react'
 import {BsCollectionPlay} from "react-icons/bs";
 import {NavLink} from "react-router-dom";
-import {FiHeart, FiUserCheck} from "react-icons/fi";
-import {CgMenuBoxed} from "react-icons/cg";
+import {FiHeart} from "react-icons/fi";
+import {CgMenuBoxed, CgUser} from "react-icons/cg";
 import MenuDrawer from "../../Components/Drawer/MenuDrawer";
 import {SidebarContext} from "../../Context/DrawerContext";
+import {UserAuth} from "../../Context/AuthContext";
 
 function MobileFooter() {
+    const {user, logout} = UserAuth()
     const {mobileDrawer, toggleDrawer} = useContext(SidebarContext);
     const active = "bg-white text-main";
     const inactive = "transitions text-2xl flex-colo hover:bg-white hover:text-main rounded-md px-3 py-3";
     const Hover = ({isActive}) => isActive ? `${active} ${inactive}` : `${inactive} text-white`;
+
     return (
         <>
             {/*<div className="flex flex-col h-full justify-between align-middle bg-white rounded cursor-pointer overflow-y-scroll flex-grow w-full">*/}
@@ -27,10 +30,17 @@ function MobileFooter() {
                         <FiHeart className='w-6 h-6'/>
                     </NavLink>
 
-                    <NavLink to='/login' className={Hover}>
-                        <FiUserCheck/>
-                    </NavLink>
-
+                    {
+                        user?.email ? (
+                            <NavLink to={`/account`} className={Hover}>
+                                <CgUser className={'w-6 h-6'}/>
+                            </NavLink>
+                        ) : (
+                            <NavLink to='/login' className={Hover}>
+                                <CgUser className={'w-6 h-6'}/>
+                            </NavLink>
+                        )
+                    }
                     <button onClick={() => toggleDrawer()}
                             type="button"
                             className={inactive}>

@@ -27,7 +27,7 @@ function Login() {
         <Layout>
             <div className='container mx-auto px-2 my-24 flex-colo text-lg'>
                 <div className='w-full md:w-3/5 2xl:w-2/5 flex-colo sm:p-10 p-6 bg-dry rounded-lg border border-border gap-5'>
-                    <div>
+                    <div className='mb-5'>
                         <img src='/images/logos/mediatoria-red.png' alt='logo'
                              className={`w-full object-contain h-12`}/>
                         {
@@ -39,7 +39,8 @@ function Login() {
                         }
                     </div>
 
-                    <form onSubmit={handleSubmit} className='flex-colo gap-5'>
+                    <form onSubmit={handleSubmit}
+                          className='flex-colo gap-5'>
                         <Input label='Email'
                                placeholder='mediatoria@gmail.com'
                                type='email' bg={true}

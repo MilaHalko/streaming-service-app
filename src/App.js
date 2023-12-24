@@ -18,10 +18,10 @@ import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
 import Genres from "./Screens/Dashboard/Admin/Genres";
 import Users from "./Screens/Dashboard/Admin/Users";
 import AddMovie from "./Screens/Dashboard/Admin/AddMovie";
-import ScrollOnTop from "./Screens/ScrollOnTop";
 import DrawerContext from "./Context/DrawerContext";
 import {AuthContextProvider} from "./Context/AuthContext";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import ScrollOnTop from "./Components/Functions/ScrollOnTop";
+import ProtectedRoute from "./Components/Functions/ProtectedRoute";
 
 function App() {
     AOS.init();

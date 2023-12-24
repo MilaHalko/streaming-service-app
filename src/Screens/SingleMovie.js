@@ -11,7 +11,7 @@ import Movie from "../Components/Movie";
 
 function SingleMovie() {
     const {id} = useParams();
-    const movie = MoviesData.find((movie) => movie.name === id);
+    const movie = MoviesData.find((movie) => movie.id === id);
     let RelatedMovies = [];
     for (let i = 0; i < movie.genre.length; i++) {
         RelatedMovies = MoviesData.filter((another) => another.genre.includes(movie.genre[i]) && another.name !== movie.name);

@@ -4,6 +4,7 @@ import {IoSearchSharp} from "react-icons/io5";
 import {CgUser} from "react-icons/cg";
 import {FaSignOutAlt} from "react-icons/fa";
 import {UserAuth} from "../../Context/AuthContext";
+import {PiSignInBold} from "react-icons/pi";
 
 function NavBar() {
     const {user, logout} = UserAuth()
@@ -64,7 +65,7 @@ function NavBar() {
                                     <CgUser className='w-8 h-8'/>
                                 </NavLink>
                                 <button onClick={handleLogout} className={`${Hover({ isActive: false })} relative`}>
-                                    <FaSignOutAlt className='w-6 h-6'/>
+                                    <PiSignInBold className='w-6 h-6'/>
                                 </button>
                             </>
                         ) : (
