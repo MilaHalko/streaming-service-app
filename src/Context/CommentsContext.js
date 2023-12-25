@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {UserAuth} from "./AuthContext";
-import {arrayUnion, doc, onSnapshot, setDoc, updateDoc, getDoc} from "firebase/firestore";
+import {arrayUnion, doc, onSnapshot, setDoc, updateDoc, getDoc, arrayRemove} from "firebase/firestore";
 import {db} from "../firebase";
 
 const CommentsContext = React.createContext()
@@ -34,6 +34,12 @@ export function CommentsContextProvider({children}) {
         }
     }
 
+    async function RemoveComment(movieID, commentData) {
+        await updateDoc(doc(db, "comments", `${movieID}`), {
+            comments: arrayRemove(commentData)
+        })
+    }
+
     function GetComments(movieId) {
         const [comments, setComments] = React.useState([])
 
@@ -49,7 +55,7 @@ export function CommentsContextProvider({children}) {
     }
 
     return (
-        <CommentsContext.Provider value={{AddComment, GetComments}}>
+        <CommentsContext.Provider value={{AddComment, GetComments, RemoveComment}}>
             {children}
         </CommentsContext.Provider>
     )
