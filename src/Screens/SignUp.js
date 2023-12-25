@@ -11,7 +11,7 @@ function SignUp() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfirmPassword] = React.useState('')
-    const {user, signup} = UserAuth()
+    const {signup} = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {

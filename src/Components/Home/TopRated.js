@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 import Rating from "../Stars";
 import axios from "axios";
 import requests from "../../Requests";
-
+// TODO: Maybe delete?
 function TopRated() {
     const [Movies, setMovies] = React.useState([]);
     const [nextEl, setNextEl] = useState(null);
@@ -62,7 +62,7 @@ function TopRated() {
                                         <FaHeart/>
                                     </button>
                                     <Link className="font-semibold text-xl truncated line-clamp-2"
-                                          to={`/movie/${movie.title}`}>
+                                          to={`/movie/${movie.id}/${movie.title}`}>
                                         {movie.title}
                                     </Link>
                                     <div className="flex gap-2 text-star">

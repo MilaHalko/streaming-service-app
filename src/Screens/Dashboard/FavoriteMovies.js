@@ -5,15 +5,15 @@ import {UserAuth} from "../../Context/AuthContext";
 import {doc, onSnapshot} from "firebase/firestore";
 import {db} from "../../firebase";
 
-function FavouriteMovies() {
+function FavoriteMovies() {
     const {user} = UserAuth()
-    const [FavouriteMovies, setFavouriteMovies] = React.useState([])
+    const [FavoriteMovies, setFavoriteMovies] = React.useState([])
     const [admin, setAdmin] = React.useState(false)
 
     React.useEffect(() => {
         if (user?.email) {
             const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                setFavouriteMovies(doc.data()?.favoriteMovies)
+                setFavoriteMovies(doc.data()?.favoriteMovies)
                 setAdmin(doc.data()?.role === 'admin')
             });
 
@@ -25,11 +25,11 @@ function FavouriteMovies() {
     return (
         <SideBar>
             <div className="flex flex-col gap-5">
-                <h2 className="text-xl font-bold">Favourite Movies</h2>
-                <Table movies={FavouriteMovies} admin={admin}/>
+                <h2 className="text-xl font-bold">Favorite Movies</h2>
+                <Table movies={FavoriteMovies} admin={admin}/>
             </div>
         </SideBar>
     )
 }
 
-export default FavouriteMovies
+export default FavoriteMovies

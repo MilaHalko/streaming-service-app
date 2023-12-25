@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from "../Layout/Layout";
 import Banner from "../Components/Home/Banner";
-import PopularMovies from "../Components/Home/PopularMovies";
+import MoviesBlock from "../Components/Home/MoviesBlock";
 import Promos from "../Components/Home/Promos";
 import TopRated from "../Components/Home/TopRated";
 import requests from "../Requests";
@@ -11,9 +11,9 @@ function HomeScreen() {
         <Layout>
             <div className='px-5 mb-6'>
                 <Banner fetchUrl={requests.requestNowPlaying}/>
-                <PopularMovies/>
+                <MoviesBlock title='Popular' request={requests.requestPopular} movieCount={30}/>
                 <Promos/>
-                <TopRated/>
+                <MoviesBlock title='Top Rated' request={requests.requestTopRated} movieCount={10}/>
             </div>
         </Layout>
     )

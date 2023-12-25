@@ -6,8 +6,6 @@ import {BsCollectionPlay} from "react-icons/bs";
 import {HiOutlineUserGroup} from "react-icons/hi";
 import {BiPhoneCall} from "react-icons/bi";
 import {UserAuth} from "../../Context/AuthContext";
-import {FaSignOutAlt} from "react-icons/fa";
-import {CgUser} from "react-icons/cg";
 import {PiSignInBold} from "react-icons/pi";
 
 function MenuDrawer({drawerOpen, toggleDrawer}) {

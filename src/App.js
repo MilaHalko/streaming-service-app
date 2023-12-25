@@ -12,7 +12,7 @@ import SignUp from "./Screens/SignUp";
 import Account from "./Screens/Dashboard/Account";
 import AOS from "aos";
 import Password from "./Screens/Dashboard/Password";
-import FavouriteMovies from "./Screens/Dashboard/FavouriteMovies";
+import FavoriteMovies from "./Screens/Dashboard/FavoriteMovies";
 import MoviesList from "./Screens/Dashboard/Admin/MovieList";
 import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
 import Genres from "./Screens/Dashboard/Admin/Genres";
@@ -22,54 +22,68 @@ import DrawerContext from "./Context/DrawerContext";
 import {AuthContextProvider} from "./Context/AuthContext";
 import ScrollOnTop from "./Components/Functions/ScrollOnTop";
 import ProtectedRoute from "./Components/Functions/ProtectedRoute";
+import * as PropTypes from "prop-types";
+import {MovieContextProvider} from "./Context/MovieContext";
+import {CommentsContextProvider} from "./Context/CommentsContext";
+
+function MovieContestProvider(props) {
+    return null;
+}
+
+MovieContestProvider.propTypes = {children: PropTypes.node};
 
 function App() {
     AOS.init();
     return (
         <AuthContextProvider>
-            <DrawerContext>
-                <ScrollOnTop>
-                    <Routes>
-                        <Route path="/" element={<HomeScreen/>}/>
-                        <Route path="/about-us" element={<AboutUs/>}/>
-                        <Route path="/contact-us" element={<ContactUs/>}/>
-                        <Route path="/movies" element={<MoviesPage/>}/>
-                        <Route path="/movie/:id" element={<SingleMovie/>}/>
-                        <Route path="/watch/:id" element={<WatchPage/>}/>
-                        <Route path="/login" element={<Login/>}/>
-                        <Route path="/signup" element={<SignUp/>}/>
-                        <Route path="/account" element={
-                            <ProtectedRoute>
-                                <Account/>
-                            </ProtectedRoute>
-                        }/>
-                        <Route path="/password" element={
-                            <ProtectedRoute>
-                                <Password/>
-                            </ProtectedRoute>
-                        }/>
-                        <Route path="/favourites" element={
-                            <ProtectedRoute>
-                                <FavouriteMovies/>
-                            </ProtectedRoute>
-                        }/>
-                        <Route path="/dashboard" element={
-                            <ProtectedRoute>
-                                <Dashboard/>
-                            </ProtectedRoute>
-                        }/>
-                        // TODO: add admin protected route
-                        <Route path="/movieslist" element={<MoviesList/>}/>
-                        <Route path="/users" element={<Users/>}/>
-                        // TODO: maybe remove genres
-                        <Route path="/addmovie" element={<AddMovie/>}/>
-                        <Route path="/genres" element={<Genres/>}/>
+            <MovieContextProvider>
+                <CommentsContextProvider>
+                    <DrawerContext>
+                        <ScrollOnTop>
+                            <Routes>
+                                <Route path="/" element={<HomeScreen/>}/>
+                                <Route path="/about-us" element={<AboutUs/>}/>
+                                <Route path="/contact-us" element={<ContactUs/>}/>
+                                <Route path="/movies" element={<MoviesPage/>}/>
+                                //TODO: delete title
+                                <Route path="/movie/:id/:title" element={<SingleMovie/>}/>
+                                <Route path="/watch/:id" element={<WatchPage/>}/>
+                                <Route path="/login" element={<Login/>}/>
+                                <Route path="/signup" element={<SignUp/>}/>
+                                <Route path="/account" element={
+                                    <ProtectedRoute>
+                                        <Account/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path="/password" element={
+                                    <ProtectedRoute>
+                                        <Password/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path="/favorites" element={
+                                    <ProtectedRoute>
+                                        <FavoriteMovies/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path="/dashboard" element={
+                                    <ProtectedRoute>
+                                        <Dashboard/>
+                                    </ProtectedRoute>
+                                }/>
+                                // TODO: add admin protected route
+                                <Route path="/movieslist" element={<MoviesList/>}/>
+                                <Route path="/users" element={<Users/>}/>
+                                // TODO: maybe remove genres
+                                <Route path="/addmovie" element={<AddMovie/>}/>
+                                <Route path="/genres" element={<Genres/>}/>
 
-                        <Route path="*" element={<NotFound/>}/>
+                                <Route path="*" element={<NotFound/>}/>
 
-                    </Routes>
-                </ScrollOnTop>
-            </DrawerContext>
+                            </Routes>
+                        </ScrollOnTop>
+                    </DrawerContext>
+                </CommentsContextProvider>
+            </MovieContextProvider>
         </AuthContextProvider>
     )
 }

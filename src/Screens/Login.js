@@ -8,7 +8,7 @@ function Login() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [error, setError] = React.useState('')
-    const {user, login} = UserAuth()
+    const {login} = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {

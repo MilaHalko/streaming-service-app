@@ -1,46 +1,20 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import {FaHeart, FaRegHeart} from "react-icons/fa";
 import {UserAuth} from "../Context/AuthContext";
 import {doc, updateDoc, arrayUnion, arrayRemove, onSnapshot} from "firebase/firestore";
 import {db} from "../firebase";
+import {MovieContextConsumer} from "../Context/MovieContext";
+import MovieImage from "./MovieImage";
+import axios from "axios";
+import requests from "../Requests";
+import login from "../Screens/Login";
 
 function Movie({movie}) {
+    const {SaveToFavorites, RemoveFromFavorites, IsInFavorites} = MovieContextConsumer()
     const {user} = UserAuth()
-    const [liked, setLiked] = React.useState(false)
+    const [liked, setLiked] = React.useState(IsInFavorites(movie))
     const navigate = useNavigate()
-
-    const SaveMovie = async () => {
-        if (user?.email) {
-            const newLiked = !liked;
-            setLiked(newLiked)
-
-            if (newLiked) {
-                await updateDoc(doc(db, "users", user.email), {
-                    favoriteMovies: arrayUnion({
-                        id: movie.id,
-                        title: movie.title,
-                        movie: movie
-                    })
-                })
-                console.log(`Movie ${movie.title} added to favorites`)
-
-            } else {
-                await updateDoc(doc(db, "users", user.email), {
-                    favoriteMovies: arrayRemove({
-                        id: movie.id,
-                        title: movie.title,
-                        movie: movie
-                    })
-                })
-                console.log(`Movie ${movie.title} removed from favorites`)
-            }
-
-        } else {
-            alert('Please login to save movies')
-            navigate('/login')
-        }
-    }
 
     React.useEffect(() => {
         if (user?.email) {
@@ -50,25 +24,31 @@ function Movie({movie}) {
         }
     }, [user?.email])
 
+    const handleSaveMovie = async () => {
+        if (user?.email) {
+            const newLiked = !liked;
+            setLiked(newLiked)
+            if (newLiked) {
+                SaveToFavorites(movie)
+            } else {
+                RemoveFromFavorites(movie)
+            }
+        } else {
+            alert('Please login to save movie')
+            navigate('/login')
+        }
+    }
 
     return (
         <>
             <div className='border border-border p-1 hover:scale-105 transitions relative rounded overflow-hidden'>
-                <Link to={`/movie/${movie?.title}`} className='w-full'>
-                    {
-                        movie?.backdrop_path === null ? (
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie?.title}
-                                 className='w-full h-64 object-cover'/>
-                        ) : (
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie?.title}
-                                 className='w-full h-64 object-cover'/>
-                        )
-                    }
+                <Link to={`/movie/${movie.id}/${movie?.title}`} className='w-full'>
+                    <MovieImage movie={movie} h={'64'}/>
                 </Link>
                 <div
                     className='absolute flex-btn gap-2 bottom-0 right-0 left-0 bg-main bg-opacity-60 text-white px-4 py-2'>
                     <h3 className='font-semibold truncate'>{movie?.title}</h3>
-                    <button onClick={SaveMovie}
+                    <button onClick={handleSaveMovie}
                             className='h-10 w-10 text-2xl  flex-colo transitions hover:bg-transparent text-white hover:text-subMain'>
                         {
                             liked ? <FaHeart className='text-red-600'/> : <FaRegHeart/>

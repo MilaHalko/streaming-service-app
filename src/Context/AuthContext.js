@@ -17,7 +17,6 @@ export function AuthContextProvider({children}) {
         return createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
                 setDoc(doc(db, "users", email), {
                     name: name,
                     email: email,

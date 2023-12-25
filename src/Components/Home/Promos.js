@@ -8,7 +8,7 @@ function Promos() {
                 {/* Description */}
                 <div className="flex lg:gap-10 gap-6 flex-col mb-6 lg:mb-0">
                     <h1 className="xl:text-3xl text-xl capitalize font-sans font-medium xl:leading-relaxed">
-                        Watch your favourite movies <br/> Enjoy the best stories
+                        Watch your favorite movies <br/> Enjoy the best stories
                     </h1>
                     <p className="text-text text-sm xl:text-base leading-6 xl:leading-8">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias asperiores

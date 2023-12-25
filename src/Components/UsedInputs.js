@@ -1,8 +1,10 @@
-export const Message = ({label, placeholder}) => {
+export const Message = ({label, placeholder, onChange}) => {
     return (
         <div className="text-sm w-full">
             <label className="text-border font-semibold">{label}</label>
-            <textarea className="w-full h-40 mt-2 p-6 bg-main border border-border rounded" placeholder={placeholder}>
+            <textarea className="w-full h-40 mt-2 p-6 bg-main border border-border rounded"
+                      placeholder={placeholder}
+                      onChange={onChange}>
             </textarea>
         </div>
     )

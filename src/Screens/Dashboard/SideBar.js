@@ -41,7 +41,7 @@ function SideBar({children}) {
         },
         {
             name: "Favorite Movies",
-            link: "/favourites",
+            link: "/favorites",
             icon: FaHeart
         },
         {

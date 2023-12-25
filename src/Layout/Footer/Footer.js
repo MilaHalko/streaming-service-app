@@ -16,7 +16,7 @@ function Footer() {
             title: 'My Account',
             links: [
                 {title: 'Dashboard', url: '/dashboard'},
-                {title: 'Favourites', url: '/favourites'},
+                {title: 'Favorites', url: '/favorites'},
                 {title: 'Account', url: '/account'},
                 {title: 'Change Password', url: '/password'},
             ]
