@@ -32,6 +32,8 @@ export function MovieContextProvider({children}) {
                     title: movie.title,
                     movie: movie
                 })
+            }).catch((error) => {
+                console.log(error)
             })
             console.log(`Movie ${movie.title} removed from favorites`)
         }

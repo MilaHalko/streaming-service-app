@@ -5,6 +5,7 @@ import MovieItems from "../MovieItems";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import MovieImage from "../MovieImage";
+import MovieLikeButton from "../MovieLikeButton";
 
 function Banner({fetchUrl}) {
     const [Movies, setMovies] = React.useState([]);
@@ -41,6 +42,7 @@ function Banner({fetchUrl}) {
                                       className="bg-subMain hover:text-main transitions text-white px-8 py-3 rounded font-medium sm:text-sm text-xs">
                                     Watch Now
                                 </Link>
+                                <MovieLikeButton movie={movie} className="ml-4"/>
                             </div>
                         </div>
                     </SwiperSlide>
