@@ -5,11 +5,9 @@ import MobileFooter from "./Footer/MobileFooter";
 
 function Layout({children}) {
     return (
-        <div className='bg-main text-white flex flex-col'>
+        <div className='bg-main text-white flex flex-col min-h-screen'>
             <NavBar/>
-            <div className={'flex-grow'}>
-                {children}
-            </div>
+            {children}
             <Footer/>
             <MobileFooter/>
         </div>
