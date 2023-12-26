@@ -7,13 +7,15 @@ import {
     onAuthStateChanged,
     updatePassword
 } from "firebase/auth";
-import {doc, getDoc, onSnapshot, setDoc, deleteDoc} from "firebase/firestore";
+import {doc, getDoc, getDocs, onSnapshot, collection, setDoc, deleteDoc} from "firebase/firestore";
 
 const AuthContext = createContext();
 
 export function AuthContextProvider({children}) {
     const [user, setUser] = useState({});
 
+    // --------------------------------------------------------------------------------------------------------------
+    // Auth functions -----------------------------------------------------------------------------------------------
     function signup(email, password, name) {
         return createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -46,12 +48,18 @@ export function AuthContextProvider({children}) {
         return signOut(auth);
     }
 
-    async function IsEmailAlreadyRegistered(email) {
-        const docRef = doc(db, "users", `${email}`);
-        const docSnap = await getDoc(docRef);
-        return docSnap.exists();
+    function deleteUser(userToDelete) {
+        const userDoc = doc(db, "users", `${userToDelete?.email}`);
+        deleteDoc(userDoc).then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
     }
 
+
+    // ----------------------------------------------------------------------------------------------------------------
+    // User Data Checker Functions ------------------------------------------------------------------------------------
     function UserIsAdmin() {
         const [admin, setAdmin] = React.useState(false)
 
@@ -67,15 +75,23 @@ export function AuthContextProvider({children}) {
         return admin
     }
 
-    function deleteUser() {
-        const userDoc = doc(db, "users", `${user?.email}`);
-        deleteDoc(userDoc).then(() => {
-            console.log("Document successfully deleted!");
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
+    async function IsEmailAlreadyRegistered(email) {
+        const docRef = doc(db, "users", `${email}`);
+        const docSnap = await getDoc(docRef);
+        return docSnap.exists();
     }
 
+    async function isOldPasswordValid(password) {
+        try {
+            await signInWithEmailAndPassword(auth, user?.email, password)
+            return true
+        } catch (e) {
+            return false
+        }
+    }
+
+    // ----------------------------------------------------------------------------------------------------------------
+    // User Data Getter Functions -------------------------------------------------------------------------------------
     function GetUserData() {
         const [userData, setUserData] = React.useState({})
         React.useEffect(() => {
@@ -89,18 +105,16 @@ export function AuthContextProvider({children}) {
         return userData
     }
 
+    async function GetAllUsersData() {
+        const allUsersQuery = await getDocs(collection(db, "users"));
+        return [allUsersQuery.docs.map(doc => doc.data())]
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------
+    // User Data Setter Functions -------------------------------------------------------------------------------------
     function ChangeUserName(name) {
         const userDoc = doc(db, "users", `${user?.email}`);
         setDoc(userDoc, {name: name}, {merge: true}).catch(e => console.log(e))
-    }
-
-    async function isOldPasswordValid(password) {
-        try {
-            await signInWithEmailAndPassword(auth, user?.email, password)
-            return true
-        } catch (e) {
-            return false
-        }
     }
 
     async function setNewUserPassword(password) {
@@ -122,17 +136,25 @@ export function AuthContextProvider({children}) {
     return (
         <AuthContext.Provider
             value={{
+                // Auth Functions
+                user,
                 signup,
                 login,
                 logout,
-                user,
+                deleteUser,
+
+                // Data Checker Functions
                 UserIsAdmin,
                 IsEmailAlreadyRegistered,
-                deleteUser,
-                GetUserData,
-                ChangeUserName,
                 isOldPasswordValid,
-                setNewUserPassword
+
+                // Data Getter Functions
+                GetUserData,
+                GetAllUsersData,
+
+                // Data Setter Functions
+                setNewUserPassword,
+                ChangeUserName
             }}>
             {children}
         </AuthContext.Provider>

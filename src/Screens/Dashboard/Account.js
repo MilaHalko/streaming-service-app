@@ -25,7 +25,7 @@ function Account() {
     const navigate = useNavigate()
 
     const handleUserDelete = () => {
-        deleteUser()
+        deleteUser(user)
         logout()
         navigate('/')
     }

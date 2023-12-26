@@ -8,13 +8,14 @@ import {MovieContextConsumer} from "../../Context/MovieContext";
 
 function FavoriteMovies() {
     const {GetFavoriteMovies} = MovieContextConsumer()
-    const FavoriteMovies = GetFavoriteMovies()
+    const favoriteMovies = GetFavoriteMovies()
+    const favoriteMoviesCount = favoriteMovies.length
 
     return (
         <SideBar>
             <div className="flex flex-col gap-5">
-                <h2 className="text-xl font-bold">Favorite Movies</h2>
-                <Table movies={FavoriteMovies}/>
+                <h2 className="text-xl font-bold">Favorite Movies ({favoriteMoviesCount})</h2>
+                <Table movies={favoriteMovies}/>
             </div>
         </SideBar>
     )

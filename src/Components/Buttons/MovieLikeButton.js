@@ -17,9 +17,9 @@ function MovieLikeButton({movie, className}) {
             const newLiked = !liked;
             setLiked(newLiked)
             if (newLiked) {
-                SaveToFavorites(movie)
+                await SaveToFavorites(movie)
             } else {
-                RemoveFromFavorites(movie)
+                await RemoveFromFavorites(movie)
             }
         } else {
             alert('Please login to save movie')
