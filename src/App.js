@@ -40,7 +40,7 @@ function App() {
                                 <Route path="/movies" element={<MoviesPage/>}/>
                                 <Route path="/movies/:title" element={<MoviesPage/>}/>
                                 <Route path="/movie/:id/:title" element={<SingleMovie/>}/>
-                                <Route path="/watch/:id" element={<WatchPage/>}/>
+                                <Route path="/watch/:id/:title" element={<WatchPage/>}/>
                                 <Route path="/login" element={<Login/>}/>
                                 <Route path="/signup" element={<SignUp/>}/>
                                 <Route path="/account" element={

@@ -77,22 +77,48 @@ export function MovieContextProvider({children}) {
 
     function GetMoviesByRequest(request, movieCount) {
         const [movies, setMovies] = React.useState([])
+        if (movieCount === undefined) movieCount = 1000
+
         React.useEffect(() => {
-            let tempMovies = []
-                for (let i = 0; i < movieCount / 20.0; i++) {
-                    axios.get(request + `&page=${i+1}`).then((response) => {
+            let tempMovies = [];
+            let shouldContinue = true;
+
+            const loadMovies = async () => {
+                for (let i = 0; i < movieCount / 20.0 && shouldContinue; i++) {
+                    try {
+                        const response = await axios.get(request + `&page=${i + 1}`);
+                        if (response.data.results.length === 0) {
+                            shouldContinue = false;
+                            break;
+                        }
                         tempMovies = [...tempMovies, ...response.data.results];
                         setMovies(tempMovies);
-                    })
+                    } catch (error) {
+                        console.error("Error loading movies:", error);
+                    }
                 }
-            }, [request]
-        );
+            };
+
+            loadMovies();
+
+            return () => {
+                shouldContinue = false; // Stop the loop when the component unmounts
+            };
+        }, [request, movieCount]);
+
         return movies.slice(0, movieCount)
     }
 
     return (
         <MovieContext.Provider
-            value={{SaveToFavorites, RemoveFromFavorites, IsInFavorites, GetFavoriteMovies, GetMovieById, GetMoviesByRequest}}>
+            value={{
+                SaveToFavorites,
+                RemoveFromFavorites,
+                IsInFavorites,
+                GetFavoriteMovies,
+                GetMovieById,
+                GetMoviesByRequest
+            }}>
             {children}
         </MovieContext.Provider>
     )

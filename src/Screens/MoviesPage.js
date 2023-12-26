@@ -13,20 +13,21 @@ export default function MoviesPage() {
     const {GetMoviesByRequest} = MovieContextConsumer()
     const maxPage = 20;
     const [page, setPage] = useState(maxPage);
-    const Movies = title ? GetMoviesByRequest(requests.requestTitle(title), page) : GetMoviesByRequest(requests.requestPopular, page);
+    const Movies = title ? GetMoviesByRequest(requests.requestTitle(title)) : GetMoviesByRequest(requests.requestPopular, 513);
 
     const HandleLoadMore = () => {
         setPage(page + maxPage);
-
     }
 
     return (
         <Layout>
             <div className="min-h-screen container mx-auto px-2 my-6">
                 <Filters/>
+
                 <p className='text-lg font-medium my-6'>
                     Total <span className='font-bold text-subMain'>{Movies.length}</span>{' '} movies found
                 </p>
+
                 <div className='grid xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6'>
                     {
                         Movies.slice(0, page)?.map((movie, index) => (
@@ -34,6 +35,7 @@ export default function MoviesPage() {
                         ))
                     }
                 </div>
+
                 {/* Load more movies */}
                 <div className='w-full flex-colo md:my-20 my-10'>
                     <button onClick={HandleLoadMore}
