@@ -11,7 +11,6 @@ import Login from "./Screens/Login";
 import SignUp from "./Screens/SignUp";
 import Account from "./Screens/Dashboard/Account";
 import AOS from "aos";
-import Password from "./Screens/Dashboard/Password";
 import FavoriteMovies from "./Screens/Dashboard/FavoriteMovies";
 import MoviesList from "./Screens/Dashboard/Admin/MovieList";
 import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
@@ -51,11 +50,6 @@ function App() {
                                 <Route path="/account" element={
                                     <ProtectedRoute>
                                         <Account/>
-                                    </ProtectedRoute>
-                                }/>
-                                <Route path="/password" element={
-                                    <ProtectedRoute>
-                                        <Password/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route path="/favorites" element={

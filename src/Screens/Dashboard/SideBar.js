@@ -25,11 +25,6 @@ function SideBar({children}) {
             link: "/favorites",
             icon: FaHeart
         },
-        {
-            name: "Change Password",
-            link: "/password",
-            icon: RiLockPasswordLine
-        }
     ];
 
     if (admin) {
