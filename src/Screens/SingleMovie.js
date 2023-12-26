@@ -1,29 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Layout from "../Layout/Layout";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import MovieInfo from "../Components/Single/MovieInfo";
-import MovieCasts from "../Components/Single/MovieCasts";
 import MovieRates from "../Components/Single/MovieRates";
 import Titles from "../Components/Titles";
 import {BsCollectionFill} from "react-icons/bs";
 import Movie from "../Components/Movie";
 import {MovieContextConsumer} from "../Context/MovieContext";
-import requests from "../Requests";
-import axios from "axios";
 
 function SingleMovie() {
     const {id} = useParams();
     const {GetMovieById} = MovieContextConsumer()
-    const navigate = useNavigate()
-    // const movie = GetMovieById(id);
-
-    const [movie, setMovie] = React.useState()
-    React.useEffect(() => {
-        let request = requests.requestMovie(id)
-        axios.get(request).then((response) => {
-            setMovie(response.data)
-        })
-    }, [id])
+    const movie = GetMovieById(id)
 
     let RelatedMovies = [movie];
 

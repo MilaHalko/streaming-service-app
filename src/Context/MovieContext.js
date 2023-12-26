@@ -64,10 +64,10 @@ export function MovieContextProvider({children}) {
         return FavoriteMovies
     }
 
-    async function GetMovieById(id) {
+    function GetMovieById(id) {
         const [movie, setMovie] = React.useState()
         React.useEffect(() => {
-            let request = requests.requestMovie(id)
+            let request = requests.requestID(id)
             axios.get(request).then((response) => {
                 setMovie(response.data)
             })

@@ -4,10 +4,12 @@ import {IoSearchSharp} from "react-icons/io5";
 import {CgUser} from "react-icons/cg";
 import {UserAuth} from "../../Context/AuthContext";
 import {PiSignInBold} from "react-icons/pi";
+import requests from "../../Requests";
 
 function NavBar() {
     const {user, logout} = UserAuth()
     const navigate = useNavigate()
+    const [movieToSearch, setMovieToSearch] = React.useState('')
 
     const handleLogout = async () => {
         try {
@@ -17,6 +19,17 @@ function NavBar() {
             console.log(error)
         }
     };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            console.log('Enter key pressed')
+            handleSearch()
+        }
+    }
+
+    const handleSearch = () => {
+        navigate(`/movies/${movieToSearch}`)
+    }
 
     const hover = 'hover:text-subMain transitions text-white';
     const Hover = ({isActive}) => (isActive ? 'text-subMain' : hover);
@@ -36,10 +49,13 @@ function NavBar() {
                 <div className='col-span-3'>
                     <form className='w-full text-sm bg-dryGray rounded flex-btn gap-4'>
                         <button type='submit'
+                                onClick={handleSearch}
                                 className='bg-subMain w-12 h-12 flex-colo rounded'>
                             <IoSearchSharp className={'w-6 h-6'}/>
                         </button>
                         <input type='text'
+                               onKeyDown={handleKeyDown}
+                               onChange={(e) => setMovieToSearch(e.target.value)}
                                placeholder='Search Movie...'
                                className='font-medium placeholder:text-border text-base w-11/12 h-12 bg-transparent border-none px-2 text-black'/>
                     </form>
@@ -47,7 +63,7 @@ function NavBar() {
 
                 {/*Navigation*/}
                 <div className='col-span-3 font-bold text-base hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center'>
-                    <NavLink to='/movies' className={Hover}>
+                    <NavLink to={`/movies/${""}`} className={Hover}>
                         Movies
                     </NavLink>
                     <NavLink to='/about-us' className={Hover}>

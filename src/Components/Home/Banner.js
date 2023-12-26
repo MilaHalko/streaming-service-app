@@ -11,6 +11,7 @@ import {MovieContextConsumer} from "../../Context/MovieContext";
 function Banner({fetchUrl}) {
     const {GetMoviesByRequest} = MovieContextConsumer()
     const Movies = GetMoviesByRequest(fetchUrl, 10);
+
     return (
         <div className="relative w-full">
             <Swiper
