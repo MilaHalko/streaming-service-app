@@ -6,34 +6,15 @@ import {RiLockPasswordLine, RiMovie2Fill} from "react-icons/ri";
 import {FiSettings} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
 import Layout from "../../Layout/Layout";
+import {doc, onSnapshot} from "firebase/firestore";
+import {db} from "../../firebase";
+import {UserAuth} from "../../Context/AuthContext";
 
 function SideBar({children}) {
+    const {UserIsAdmin} = UserAuth()
+    const admin = UserIsAdmin()
+
     const SideLinks = [
-        {
-            name: "Dashboard",
-            link: "/dashboard",
-            icon: BsFillGridFill
-        },
-        {
-            name: "Movies List",
-            link: "/movieslist",
-            icon: FaListAlt
-        },
-        {
-            name: "Add Movie",
-            link: "/addmovie",
-            icon: RiMovie2Fill
-        },
-        {
-            name: "Genres",
-            link: "/genres",
-            icon: HiViewGridAdd
-        },
-        {
-            name: "Users",
-            link: "/users",
-            icon: FaUsers
-        },
         {
             name: "Account Settings",
             link: "/account",
@@ -50,6 +31,31 @@ function SideBar({children}) {
             icon: RiLockPasswordLine
         }
     ];
+
+    if (admin) {
+        SideLinks.push(
+            {
+                name: "Dashboard",
+                link: "/dashboard",
+                icon: BsFillGridFill
+            },
+            {
+                name: "Movies List",
+                link: "/movieslist",
+                icon: FaListAlt
+            },
+            {
+                name: "Add Movie",
+                link: "/addmovie",
+                icon: RiMovie2Fill
+            },
+            {
+                name: "Users",
+                link: "/users",
+                icon: FaUsers
+            }
+        )
+    }
 
     const active = "bg-dryGray text-subMain";
     const hover = "hover:text-white hover:bg-main";
