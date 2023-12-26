@@ -2,8 +2,11 @@ import React from 'react'
 
 function MovieImage({movie, h = 'full', styles = ''}) {
     if (movie?.backdrop_path === null && movie?.poster_path === null) {
-        console.log(movie)
-        console.log('No Image Found')
+        return (
+            <div className={`${styles} flex flex-row justify-center h-${h} bg-noPosterAvailable`}>
+            <img src='/images/cinemaPosters/no-poster.png' alt={movie?.title}/>
+            </div>
+        )
     }
 
     return movie?.backdrop_path === null ? (
