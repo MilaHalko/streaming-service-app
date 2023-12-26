@@ -3,7 +3,7 @@ import MovieItems from "../MovieItems";
 import {FaPlay} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import MovieImage from "../MovieImage";
-import MovieLikeButton from "../MovieLikeButton";
+import MovieLikeButton from "../Buttons/MovieLikeButton";
 
 function MovieInfo({movie}) {
     return (

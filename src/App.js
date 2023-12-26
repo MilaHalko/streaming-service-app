@@ -15,7 +15,6 @@ import Password from "./Screens/Dashboard/Password";
 import FavoriteMovies from "./Screens/Dashboard/FavoriteMovies";
 import MoviesList from "./Screens/Dashboard/Admin/MovieList";
 import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
-import Genres from "./Screens/Dashboard/Admin/Genres";
 import Users from "./Screens/Dashboard/Admin/Users";
 import AddMovie from "./Screens/Dashboard/Admin/AddMovie";
 import DrawerContext from "./Context/DrawerContext";
@@ -45,7 +44,6 @@ function App() {
                                 <Route path="/about-us" element={<AboutUs/>}/>
                                 <Route path="/contact-us" element={<ContactUs/>}/>
                                 <Route path="/movies" element={<MoviesPage/>}/>
-                                //TODO: delete title
                                 <Route path="/movie/:id/:title" element={<SingleMovie/>}/>
                                 <Route path="/watch/:id" element={<WatchPage/>}/>
                                 <Route path="/login" element={<Login/>}/>
@@ -75,7 +73,6 @@ function App() {
                                 <Route path="/users" element={<Users/>}/>
                                 // TODO: maybe remove genres
                                 <Route path="/addmovie" element={<AddMovie/>}/>
-                                <Route path="/genres" element={<Genres/>}/>
 
                                 <Route path="*" element={<NotFound/>}/>
 

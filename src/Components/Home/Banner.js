@@ -5,7 +5,7 @@ import MovieItems from "../MovieItems";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import MovieImage from "../MovieImage";
-import MovieLikeButton from "../MovieLikeButton";
+import MovieLikeButton from "../Buttons/MovieLikeButton";
 
 function Banner({fetchUrl}) {
     const [Movies, setMovies] = React.useState([]);

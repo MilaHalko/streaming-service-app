@@ -5,7 +5,6 @@ import {Message, Select} from "../UsedInputs";
 import Rating from "../Stars";
 import {Comments} from "../../Context/CommentsContext";
 import {UserAuth} from "../../Context/AuthContext";
-import {FaEdit} from "react-icons/fa";
 import {doc, onSnapshot} from "firebase/firestore";
 import {db} from "../../firebase";
 import {AiOutlineClose} from "react-icons/ai";
@@ -42,16 +41,8 @@ function MovieRates({movie}) {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const comments = GetComments(movie?.id);
-    const [admin, setAdmin] = React.useState(false)
-
-    React.useEffect(() => {
-        if (user?.email) {
-            const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                setAdmin(doc.data()?.role === 'admin')
-            });
-            return () => unsubscribe();
-        }
-    }, [user?.email])
+    const {UserIsAdmin} = UserAuth()
+    const admin = UserIsAdmin()
 
     const handleAddComment = () => {
         if (!user) {
@@ -64,12 +55,6 @@ function MovieRates({movie}) {
         }
         AddComment(movie?.id, rating, comment)
     }
-    //
-    // const handleRemoveComment = (commentData) => {
-    //     console.log('remove comment')
-    //     console.log(commentData)
-    //
-    // }
 
     return (
         <div className="my-12">
@@ -103,21 +88,22 @@ function MovieRates({movie}) {
                 </div>
 
                 {/* Reviews */}
-                <div className="col-span-3 flex flex-col gap-6">
-                    <h3 className="text-xl text-text font-semibold">Reviews {comments?.length}</h3>
-                    <div
-                        className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
+                <div className="col-span-3 flex flex-col gap-6 w-full">
+                    <h3 className="text-xl text-text font-semibold">
+                        Reviews {comments?.length}
+                    </h3>
+
+                    <div className="flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header">
                         {comments && comments.map((commentData, index) => {
                             return (
-                                <div key={index}
-                                     className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
-                                    <div className="col-span-7 flex flex-col gap-2">
+                                <div key={index} className="md:grid flex flex-col w-full grid-cols-4 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
+                                    <div className="col-span-3 flex flex-col gap-2">
                                         <h2>{commentData.user}</h2>
                                         <p className="text-xs leading-6 font-medium text-text">
                                             {commentData.comment}
                                         </p>
                                     </div>
-                                    <div className="col-span-3 flex border-l border-border">
+                                    <div className="col-span-1 flex border-l border-border">
                                         <div className="ml-5 flex-rows text-xs gap-1 text-star">
                                             <Rating valueBy10={commentData.rating}/>
                                         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import MovieImage from "./MovieImage";
-import MovieLikeButton from "./MovieLikeButton";
+import MovieLikeButton from "./Buttons/MovieLikeButton";
 
 function Movie({movie}) {
     return (

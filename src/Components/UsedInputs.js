@@ -22,7 +22,7 @@ export const Select = ({label, options, onChange, multiple = false}) => {
     )
 };
 
-export const Input = ({label, placeholder, type, bg, onChange, autoComplete = 'off'}) => {
+export const Input = ({label, placeholder, type, bg, onChange, autoComplete, value}) => {
     return (
         <div className="text-sm w-full">
             <label className="text-border font-semibold text-base">{label}</label>
@@ -31,6 +31,7 @@ export const Input = ({label, placeholder, type, bg, onChange, autoComplete = 'o
                    placeholder={placeholder}
                    autoComplete={autoComplete}
                    onChange={onChange}
+                   value={value}
                    className={`w-full mt-1 p-3 text-base border border-border rounded text-white ${bg ? 'bg-main' : 'bg-dry'}`}/>
         </div>
     )
