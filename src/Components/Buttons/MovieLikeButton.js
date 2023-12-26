@@ -37,7 +37,7 @@ function MovieLikeButton({movie, className}) {
 
     return (
         <button onClick={handleSaveMovie}
-                className={`${className}h-10 w-10 text-2xl flex-colo transitions hover:bg-transparent text-white hover:text-subMain`}>
+                className={`${className} h-10 w-10 text-2xl flex-colo transitions hover:bg-transparent text-white hover:text-subMain`}>
             {
                 liked ? <FaHeart className='text-red-600'/> : <FaRegHeart/>
             }
