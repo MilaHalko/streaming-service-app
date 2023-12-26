@@ -1,10 +1,10 @@
 import React from 'react'
 import {FaHeart, FaRegHeart} from "react-icons/fa";
 import {doc, onSnapshot} from "firebase/firestore";
-import {db} from "../firebase";
-import {UserAuth} from "../Context/AuthContext";
-import {MovieContextConsumer} from "../Context/MovieContext";
 import {useNavigate} from "react-router-dom";
+import {UserAuth} from "../../Context/AuthContext";
+import {MovieContextConsumer} from "../../Context/MovieContext";
+import {db} from "../../firebase";
 
 function MovieLikeButton({movie, className}) {
     const {user} = UserAuth()
