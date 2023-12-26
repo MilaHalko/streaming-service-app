@@ -49,13 +49,26 @@ export function MovieContextProvider({children}) {
         }
     }
 
+    function GetFavoriteMovies() {
+        const [FavoriteMovies, setFavoriteMovies] = React.useState([])
+
+        React.useEffect(() => {
+            if (user?.email) {
+                const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+                    setFavoriteMovies(doc.data()?.favoriteMovies.map((item) => item.movie))
+                });
+
+                return () => unsubscribe();
+            }
+        }, [user?.email])
+        return FavoriteMovies
+    }
+
     async function GetMovieById(id) {
         const [movie, setMovie] = React.useState()
         React.useEffect(() => {
             let request = requests.requestMovie(id)
-            console.log(request)
             axios.get(request).then((response) => {
-                console.log(response.data)
                 setMovie(response.data)
             })
         }, [id])
@@ -79,7 +92,7 @@ export function MovieContextProvider({children}) {
 
     return (
         <MovieContext.Provider
-            value={{SaveToFavorites, RemoveFromFavorites, IsInFavorites, GetMovieById, GetMoviesByRequest}}>
+            value={{SaveToFavorites, RemoveFromFavorites, IsInFavorites, GetFavoriteMovies, GetMovieById, GetMoviesByRequest}}>
             {children}
         </MovieContext.Provider>
     )
