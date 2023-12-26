@@ -24,12 +24,6 @@ import * as PropTypes from "prop-types";
 import {MovieContextProvider} from "./Context/MovieContext";
 import {CommentsContextProvider} from "./Context/CommentsContext";
 
-function MovieContestProvider(props) {
-    return null;
-}
-
-MovieContestProvider.propTypes = {children: PropTypes.node};
-
 function App() {
     AOS.init();
     return (
@@ -48,24 +42,32 @@ function App() {
                                 <Route path="/login" element={<Login/>}/>
                                 <Route path="/signup" element={<SignUp/>}/>
                                 <Route path="/account" element={
-                                    <ProtectedRoute>
+                                    <ProtectedRoute admin={false}>
                                         <Account/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route path="/favorites" element={
-                                    <ProtectedRoute>
+                                    <ProtectedRoute admin={false}>
                                         <FavoriteMovies/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route path="/dashboard" element={
-                                    <ProtectedRoute>
+                                    <ProtectedRoute admin={true}>
                                         <Dashboard/>
                                     </ProtectedRoute>
                                 }/>
-                                // TODO: add admin protected route
-                                <Route path="/movieslist" element={<MoviesList/>}/>
-                                <Route path="/users" element={<Users/>}/>
-                                // TODO: maybe remove genres
+                                <Route path="/movieslist" element={
+                                    <ProtectedRoute admin={true}>
+                                        <MoviesList/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path="/users" element={
+                                    <ProtectedRoute admin={true}>
+                                        <Users/>
+                                    </ProtectedRoute>
+                                }/>
+
+                                // TODO: maybe remove ?
                                 <Route path="/addmovie" element={<AddMovie/>}/>
 
                                 <Route path="*" element={<NotFound/>}/>
