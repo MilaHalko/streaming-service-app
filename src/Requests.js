@@ -8,7 +8,20 @@ const requests = {
 
     requestDrama: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=drama&include_adult=false`,
     requestGenres: `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`,
-    requestMovie: (year, genre, language) => `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=${language}&sort_by=popularity.desc&primary_release_year=${year}&with_genres=${genre}`,
+    requestMovies: (year, genre, title) => {
+        let request = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+        // if (language !== "") request += `&language=${language}`
+        request += `&sort_by=popularity.desc`
+        if (year !== "") request += `&primary_release_year=${year}`
+        if (genre !== "") request += `&with_genres=${genre}`
+        if (title !== "") request += `&query=${title}`
+        return request
+        // return `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}
+        // &language=${language}
+        // &sort_by=popularity.desc
+        // &primary_release_year=${year}
+        // &with_genres=${genre}`;
+    },
     requestID: (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
     requestTitle: (title) => `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${title}`,
 

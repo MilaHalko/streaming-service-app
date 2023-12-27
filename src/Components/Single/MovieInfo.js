@@ -28,9 +28,6 @@ function MovieInfo({movie}) {
 
                             {/* Stats */}
                             <div className='sm:flex items-center gap-4 font-medium text-dryGray'>
-                                <div className='flex flex-colo bg-subMain text-xs px-2 py-1 my-1 max-w-fit mb'>
-                                    HD 4K
-                                </div>
                                 <MovieItems movie={movie}/>
                             </div>
 

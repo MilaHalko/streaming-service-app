@@ -9,17 +9,23 @@ import {db} from "../../firebase";
 function MovieLikeButton({movie, className}) {
     const {user} = UserAuth()
     const {SaveToFavorites, RemoveFromFavorites, IsInFavorites} = MovieContextConsumer()
-    const [liked, setLiked] = React.useState(IsInFavorites(movie))
+    const [liked, setLiked] = React.useState(!IsInFavorites(movie))
     const navigate = useNavigate()
 
-    const handleSaveMovie = async () => {
+    const handleSaveMovie = () => {
+        const saveMovie = async (movie) => {
+            await SaveToFavorites(movie)
+        }
+        const removeMovie = async (movie) => {
+            await RemoveFromFavorites(movie)
+        }
         if (user?.email) {
             const newLiked = !liked;
             setLiked(newLiked)
             if (newLiked) {
-                await SaveToFavorites(movie)
+                saveMovie(movie)
             } else {
-                await RemoveFromFavorites(movie)
+                removeMovie(movie)
             }
         } else {
             alert('Please login to save movie')
@@ -33,7 +39,8 @@ function MovieLikeButton({movie, className}) {
                 doc.data()?.favoriteMovies.some((item) => item.id === movie.id) ? setLiked(true) : setLiked(false)
             });
         }
-    }, [user?.email])
+        // setLiked(IsInFavorites(movie))
+    }, [user?.email, movie])
 
     return (
         <button onClick={handleSaveMovie}

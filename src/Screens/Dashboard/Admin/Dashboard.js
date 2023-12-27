@@ -2,9 +2,6 @@ import React from 'react'
 import SideBar from "../SideBar";
 import {FaRegListAlt, FaUser} from "react-icons/fa";
 import {HiViewGridAdd} from "react-icons/hi";
-import {MoviesData} from "../../../Data/moviesData";
-import {UsersData} from "../../../Data/usersData";
-import {GenresData} from "../../../Data/genresData";
 import Table from "../../../Components/Table";
 
 function Dashboard() {
@@ -13,19 +10,19 @@ function Dashboard() {
             bg: "bg-orange-600",
             icon: FaRegListAlt,
             title: "Total Movies",
-            total: MoviesData.length
+            total: 100 // TODO: Get total movies
         },
         {
             bg: "bg-blue-700",
             icon: HiViewGridAdd,
             title: "Total Genres",
-            total: GenresData.length
+            total: 100 // TODO: Get total genres
         },
         {
             bg: "bg-green-600",
             icon: FaUser,
             title: "Total Users",
-            total: UsersData.length
+            total: 100 // TODO: Get total users
         }
     ];
     return (
@@ -35,7 +32,7 @@ function Dashboard() {
                 {DashboardData.map((data, index) => (
                     <div key={index} className='p-4 rounded bg-main border-border grid grid-cols-4 gap-2'>
                         <div className={`col-span-1 rounded-full h-12 w-12 flex-colo ${data.bg}`}>
-                            <data.icon />
+                            {/*<data.icon />*/}
                         </div>
                         <div className="col-span-3">
                             <h2>{data.title}</h2>
@@ -45,7 +42,7 @@ function Dashboard() {
                 ))}
             </div>
             <h3 className="text-md font-medium my-6 text-border">Recent Movies</h3>
-            <Table data={MoviesData.slice(0, 5)} admin={true}/>
+            {/*<Table data={MoviesData.slice(0, 5)} admin={true}/>*/}
         </SideBar>
     )
 }

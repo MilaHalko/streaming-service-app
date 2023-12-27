@@ -11,7 +11,10 @@ function WatchPage() {
     const {GetMovieById} = MovieContextConsumer()
     let {id} = useParams();
     const movie = GetMovieById(id)
+
+    console.log(id)
     console.log(movie)
+
     const [play, setPlay] = useState(false);
 
     return (

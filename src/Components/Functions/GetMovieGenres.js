@@ -23,3 +23,14 @@ export function GetMovieGenres(movie) {
 
     return genres
 }
+
+export function GetAllGenres() {
+    const [genres, setGenres] = React.useState([])
+    React.useEffect(() => {
+        axios.get(requests.requestGenres).then(response => {
+            setGenres(response.data.genres)
+        })
+    }, [])
+
+    return genres
+}

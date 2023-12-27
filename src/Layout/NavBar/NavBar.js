@@ -6,10 +6,11 @@ import {UserAuth} from "../../Context/AuthContext";
 import {PiSignInBold} from "react-icons/pi";
 import requests from "../../Requests";
 
-function NavBar() {
+function NavBar({searchTitle}) {
     const {user, logout} = UserAuth()
     const navigate = useNavigate()
     const [movieToSearch, setMovieToSearch] = React.useState('')
+    console.log(searchTitle)
 
     const handleLogout = async () => {
         try {
@@ -57,6 +58,7 @@ function NavBar() {
                                onKeyDown={handleKeyDown}
                                onChange={(e) => setMovieToSearch(e.target.value)}
                                placeholder='Search Movie...'
+                            {...searchTitle && {defaultValue: searchTitle}}
                                className='font-medium placeholder:text-border text-base w-11/12 h-12 bg-transparent border-none px-2 text-black'/>
                     </form>
                 </div>

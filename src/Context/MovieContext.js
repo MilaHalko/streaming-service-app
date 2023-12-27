@@ -75,15 +75,38 @@ export function MovieContextProvider({children}) {
         return movie
     }
 
+    async function GetMoviesByRequest2(request, movieCount) {
+        const loadMovies =async () => {
+            let shouldContinue = true;
+            let tempMovies = [];
+
+            for (let i = 0; i < movieCount / 20.0 && shouldContinue; i++) {
+                try {
+                    const response = await axios.get(request + `&page=${i + 1}`);
+                    if (response.data.results.length === 0) {
+                        shouldContinue = false;
+                        break;
+                    }
+                    tempMovies = [...tempMovies, ...response.data.results];
+                } catch (error) {
+                    console.error("Error loading movies:", error);
+                }
+            }
+
+            return tempMovies;
+        };
+        return await loadMovies();
+    }
     function GetMoviesByRequest(request, movieCount) {
         const [movies, setMovies] = React.useState([])
-        if (movieCount === undefined) movieCount = 1000
+        if (movieCount === undefined) movieCount = 100
+
 
         React.useEffect(() => {
-            let tempMovies = [];
-            let shouldContinue = true;
-
             const loadMovies = async () => {
+                let shouldContinue = true;
+                let tempMovies = [];
+
                 for (let i = 0; i < movieCount / 20.0 && shouldContinue; i++) {
                     try {
                         const response = await axios.get(request + `&page=${i + 1}`);
@@ -92,20 +115,17 @@ export function MovieContextProvider({children}) {
                             break;
                         }
                         tempMovies = [...tempMovies, ...response.data.results];
-                        setMovies(tempMovies);
                     } catch (error) {
                         console.error("Error loading movies:", error);
                     }
                 }
+                setMovies(tempMovies);
             };
-
             loadMovies();
 
-            return () => {
-                shouldContinue = false; // Stop the loop when the component unmounts
-            };
         }, [request, movieCount]);
 
+        console.log(movies)
         return movies.slice(0, movieCount)
     }
 
@@ -117,7 +137,8 @@ export function MovieContextProvider({children}) {
                 IsInFavorites,
                 GetFavoriteMovies,
                 GetMovieById,
-                GetMoviesByRequest
+                GetMoviesByRequest,
+                GetMoviesByRequest2
             }}>
             {children}
         </MovieContext.Provider>

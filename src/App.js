@@ -20,7 +20,6 @@ import DrawerContext from "./Context/DrawerContext";
 import {AuthContextProvider} from "./Context/AuthContext";
 import ScrollOnTop from "./Components/Functions/ScrollOnTop";
 import ProtectedRoute from "./Components/Functions/ProtectedRoute";
-import * as PropTypes from "prop-types";
 import {MovieContextProvider} from "./Context/MovieContext";
 import {CommentsContextProvider} from "./Context/CommentsContext";
 

@@ -2,7 +2,6 @@ import React from 'react'
 import SideBar from "../SideBar";
 import {Input, Message, Select} from "../../../Components/UsedInputs";
 import Uploader from "../../../Components/Uploader";
-import {GenresData} from "../../../Data/genresData";
 import {ImUpload} from "react-icons/im";
 
 function AddMovie() {
@@ -40,7 +39,8 @@ function AddMovie() {
 
                 {/* GENRE */}
                 <div className="text-sm w-full">
-                    <Select label='Genres' options={GenresData} multiple={true}/>
+                    // TODO: Add genres
+                    {/*<Select label='Genres' options={GenresData} multiple={true}/>*/}
                 </div>
 
                 {/* VIDEO */}
