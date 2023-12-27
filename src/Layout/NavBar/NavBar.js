@@ -10,7 +10,6 @@ function NavBar({searchTitle}) {
     const {user, logout} = UserAuth()
     const navigate = useNavigate()
     const [movieToSearch, setMovieToSearch] = React.useState('')
-    console.log(searchTitle)
 
     const handleLogout = async () => {
         try {

@@ -1,5 +1,5 @@
 import React, {createContext, useContext} from 'react'
-import {arrayRemove, arrayUnion, doc, onSnapshot, updateDoc} from "firebase/firestore";
+import {arrayRemove, arrayUnion, doc, getDoc, onSnapshot, updateDoc} from "firebase/firestore";
 import {db} from "../firebase";
 import {UserAuth} from "./AuthContext";
 import axios from "axios";
@@ -12,38 +12,45 @@ export function MovieContextProvider({children}) {
 
     async function SaveToFavorites(movie) {
         if (user?.email) {
+            console.log(movie)
             await updateDoc(doc(db, "users", user.email), {
                 favoriteMovies: arrayUnion({
                     id: movie.id,
                     title: movie.title,
-                    movie: movie
                 })
+            }).then(() => {
+                console.log(`Movie ${movie.title} added to favorites`)
             })
-            console.log(`Movie ${movie.title} added to favorites`)
         }
     }
 
     async function RemoveFromFavorites(movie) {
         if (user?.email) {
             console.log(movie)
-            await updateDoc(doc(db, "users", user.email), {
+            await updateDoc(doc(db, "users", user?.email), {
                 favoriteMovies: arrayRemove({
                     id: movie.id,
                     title: movie.title,
-                    movie: movie
                 })
-            }).catch((error) => {
+            }).then(() => {
+                    console.log(`Movie ${movie.title} removed from favorites`)
+                }
+            ).catch((error) => {
                 console.log(error)
             })
-            console.log(`Movie ${movie.title} removed from favorites`)
+
         }
     }
 
-    function IsInFavorites(movie) {
+    async function IsInFavorites(movie) {
         if (user?.email) {
-            onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                doc.data()?.favoriteMovies.some((item) => item.id === movie.id)
-            });
+            const docRef = doc(db, "users", `${user?.email}`);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return docSnap.data()?.favoriteMovies.some((item) => item.id === movie?.id)
+            } else {
+                return false
+            }
         } else {
             return false
         }
@@ -53,13 +60,17 @@ export function MovieContextProvider({children}) {
         const [FavoriteMovies, setFavoriteMovies] = React.useState([])
 
         React.useEffect(() => {
-            if (user?.email) {
-                const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                    setFavoriteMovies(doc.data()?.favoriteMovies.map((item) => item.movie))
-                });
-
-                return () => unsubscribe();
+            const loadFavoriteMovies = async () => {
+                if (user?.email) {
+                    const docRef = doc(db, "users", `${user?.email}`);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const results = docSnap.data()?.favoriteMovies.map(async (item) => await GetMovieById2(item.id))
+                        setFavoriteMovies(await Promise.all(results))
+                    }
+                }
             }
+            loadFavoriteMovies()
         }, [user?.email])
         return FavoriteMovies
     }
@@ -75,8 +86,14 @@ export function MovieContextProvider({children}) {
         return movie
     }
 
+    async function GetMovieById2(id) {
+        let request = requests.requestID(id)
+        const response = await axios.get(request)
+        return response.data
+    }
+
     async function GetMoviesByRequest2(request, movieCount) {
-        const loadMovies =async () => {
+        const loadMovies = async () => {
             let shouldContinue = true;
             let tempMovies = [];
 
@@ -97,6 +114,7 @@ export function MovieContextProvider({children}) {
         };
         return await loadMovies();
     }
+
     function GetMoviesByRequest(request, movieCount) {
         const [movies, setMovies] = React.useState([])
         if (movieCount === undefined) movieCount = 100
@@ -125,7 +143,6 @@ export function MovieContextProvider({children}) {
 
         }, [request, movieCount]);
 
-        console.log(movies)
         return movies.slice(0, movieCount)
     }
 
@@ -137,6 +154,7 @@ export function MovieContextProvider({children}) {
                 IsInFavorites,
                 GetFavoriteMovies,
                 GetMovieById,
+                GetMovieById2,
                 GetMoviesByRequest,
                 GetMoviesByRequest2
             }}>

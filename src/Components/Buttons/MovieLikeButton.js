@@ -9,38 +9,61 @@ import {db} from "../../firebase";
 function MovieLikeButton({movie, className}) {
     const {user} = UserAuth()
     const {SaveToFavorites, RemoveFromFavorites, IsInFavorites} = MovieContextConsumer()
-    const [liked, setLiked] = React.useState(!IsInFavorites(movie))
+    const [liked, setLiked] = React.useState(IsInFavorites(movie))
     const navigate = useNavigate()
+    const updateIsInFavorites = (movie) => {
+        const loadIsInFavorites = async (movie) => {
+            const response = await IsInFavorites(movie)
+            setLiked(response)
+        }
 
-    const handleSaveMovie = () => {
-        const saveMovie = async (movie) => {
-            await SaveToFavorites(movie)
-        }
-        const removeMovie = async (movie) => {
-            await RemoveFromFavorites(movie)
-        }
-        if (user?.email) {
-            const newLiked = !liked;
-            setLiked(newLiked)
-            if (newLiked) {
-                saveMovie(movie)
-            } else {
-                removeMovie(movie)
-            }
-        } else {
-            alert('Please login to save movie')
-            navigate('/login')
-        }
+        // console.log(movie?.id)
+        loadIsInFavorites(movie)
     }
 
-    React.useEffect(() => {
+    updateIsInFavorites(movie)
+    const handleSaveMovie = async () => {
         if (user?.email) {
-            onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                doc.data()?.favoriteMovies.some((item) => item.id === movie.id) ? setLiked(true) : setLiked(false)
-            });
+            const newLiked = !liked;
+
+            try {
+                if (newLiked) {
+                    await SaveToFavorites(movie);
+                } else {
+                    await RemoveFromFavorites(movie);
+                }
+
+                updateIsInFavorites(movie)
+                // setLiked(newLiked);
+            } catch (error) {
+                console.error("Error updating favorites:", error);
+            }
+        } else {
+            alert('Please login to save movie');
+            navigate('/login');
         }
-        // setLiked(IsInFavorites(movie))
-    }, [user?.email, movie])
+    };
+
+    React.useEffect(() => {
+        updateIsInFavorites(movie);
+    }, [movie, updateIsInFavorites]);
+
+
+    // React.useEffect(() => {
+    //
+    //     // const loadIsInFavorites = async (movie) => {
+    //     //     const response = await IsInFavorites(movie)
+    //     //     setLiked(response)
+    //     // }
+    //     // // if (user?.email) {
+    //     // //     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+    //     // //         doc.data()?.favoriteMovies.some((item) => item.id === movie?.id) ? setLiked(true) : setLiked(false)
+    //     // //     });
+    //     // // }
+    //     // loadIsInFavorites(movie)
+    //     // // setLiked(IsInFavorites(movie))
+    //     updateIsInFavorites(movie)
+    // }, [user?.email, movie, liked])
 
     return (
         <button onClick={handleSaveMovie}

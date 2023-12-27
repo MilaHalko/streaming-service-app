@@ -8,12 +8,19 @@ import MovieLikeButton from "../Components/Buttons/MovieLikeButton";
 import MovieImage from "../Components/MovieImage";
 
 function WatchPage() {
-    const {GetMovieById} = MovieContextConsumer()
     let {id} = useParams();
-    const movie = GetMovieById(id)
-
     console.log(id)
-    console.log(movie)
+    const {GetMovieById2} = MovieContextConsumer()
+    const [movie, setMovie] = useState(null)
+
+    React.useEffect(() => {
+        const loadMovie = async (id) => {
+            const response = await GetMovieById2(id)
+            setMovie(response)
+        }
+        loadMovie(id)
+
+    }, [id])
 
     const [play, setPlay] = useState(false);
 

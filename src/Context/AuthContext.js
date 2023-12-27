@@ -94,13 +94,23 @@ export function AuthContextProvider({children}) {
     // User Data Getter Functions -------------------------------------------------------------------------------------
     function GetUserData() {
         const [userData, setUserData] = React.useState({})
+
         React.useEffect(() => {
-            if (user?.email) {
-                const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-                    setUserData(doc.data())
-                });
-                return () => unsubscribe();
+            const getUserData = async () => {
+                if (user?.email) {
+                    const docRef = doc(db, "users", `${user?.email}`);
+                    const docSnap = await getDoc(docRef)
+                    if (docSnap.exists()) {
+                        setUserData(await docSnap.data())
+                    }
+
+                    // const unsubscribe = onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+                    //     setUserData(doc.data())
+                    // });
+                    // return () => unsubscribe();
+                }
             }
+            getUserData()
         }, [user?.email])
         return userData
     }
