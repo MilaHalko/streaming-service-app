@@ -2,21 +2,28 @@ import React from 'react'
 import MainDrawer from "./MainDrawer";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {IoClose} from "react-icons/io5";
-import {BsCollectionPlay} from "react-icons/bs";
-import {HiOutlineUserGroup} from "react-icons/hi";
+import {BsCollectionPlay, BsFillGridFill} from "react-icons/bs";
+import {HiHand, HiOutlineUserGroup} from "react-icons/hi";
 import {BiPhoneCall} from "react-icons/bi";
 import {UserAuth} from "../../Context/AuthContext";
 import {PiSignInBold} from "react-icons/pi";
+import {FaListAlt} from "react-icons/fa";
 
 function MenuDrawer({drawerOpen, toggleDrawer}) {
-    const {user, logout} = UserAuth()
+    const {user, logout, UserIsAdmin} = UserAuth()
     const {navigate} = useNavigate()
+    const admin = UserIsAdmin()
 
     const Links = [
         {name: "Movies", path: "/movies", icon: BsCollectionPlay},
-        {name: "About Us", path: "/about-us", icon: HiOutlineUserGroup},
+        {name: "About Us", path: "/about-us", icon: HiHand},
         {name: "Contact Us", path: "/contact-us", icon: BiPhoneCall},
     ]
+
+    if (admin) {
+        Links.push({name: 'Movies List', path: '/movieslist', icon: FaListAlt})
+        Links.push({name: 'Users', path: '/users', icon: HiOutlineUserGroup})
+    }
 
     const active = "bg-dryGray text-subMain";
     const hover = "hover:bg-dry";
@@ -57,7 +64,7 @@ function MenuDrawer({drawerOpen, toggleDrawer}) {
 
                     {
                         user?.email ? (
-                            <div onClick={handleLogout} className={`${Hover({ isActive: false })}`}>
+                            <div onClick={handleLogout} className={`${Hover({isActive: false})}`}>
                                 <PiSignInBold className="text-lg"/> Logout
                             </div>
                         ) : (

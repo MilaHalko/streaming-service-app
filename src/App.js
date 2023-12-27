@@ -52,11 +52,11 @@ function App() {
                                         <FavoriteMovies/>
                                     </ProtectedRoute>
                                 }/>
-                                <Route path="/dashboard" element={
-                                    <ProtectedRoute admin={true}>
-                                        <Dashboard/>
-                                    </ProtectedRoute>
-                                }/>
+                                {/*<Route path="/dashboard" element={*/}
+                                {/*    <ProtectedRoute admin={true}>*/}
+                                {/*        <Dashboard/>*/}
+                                {/*    </ProtectedRoute>*/}
+                                {/*}/>*/}
                                 <Route path="/movieslist" element={
                                     <ProtectedRoute admin={true}>
                                         <MoviesList/>
@@ -68,9 +68,7 @@ function App() {
                                     </ProtectedRoute>
                                 }/>
 
-                                // TODO: maybe remove ?
-                                <Route path="/addmovie" element={<AddMovie/>}/>
-
+                                {/*<Route path="/addmovie" element={<AddMovie/>}/>*/}
                                 <Route path="*" element={<NotFound/>}/>
 
                             </Routes>

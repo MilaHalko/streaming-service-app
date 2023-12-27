@@ -1,7 +1,11 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import {UserAuth} from "../../Context/AuthContext";
 
 function Footer() {
+    const {UserIsAdmin} = UserAuth()
+    const admin = UserIsAdmin()
+
     const Links = [
         {
             title: 'Company',
@@ -20,6 +24,11 @@ function Footer() {
             ]
         }
     ]
+
+    if (admin) {
+        Links[1].links.push({title: 'Movies List', url: '/movieslist'})
+        Links[1].links.push({title: 'Users', url: '/users'})
+    }
 
     return (
         <div className='bg-dry py-3 px-5 md:px-16 mt-auto'>

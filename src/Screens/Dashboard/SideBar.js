@@ -1,13 +1,8 @@
 import React from 'react'
-import {BsFillGridFill} from "react-icons/bs";
 import {FaHeart, FaListAlt, FaUsers} from "react-icons/fa";
-import {HiViewGridAdd} from "react-icons/hi";
-import {RiLockPasswordLine, RiMovie2Fill} from "react-icons/ri";
 import {FiSettings} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
 import Layout from "../../Layout/Layout";
-import {doc, onSnapshot} from "firebase/firestore";
-import {db} from "../../firebase";
 import {UserAuth} from "../../Context/AuthContext";
 
 function SideBar({children}) {
@@ -29,21 +24,21 @@ function SideBar({children}) {
 
     if (admin) {
         SideLinks.push(
-            {
-                name: "Dashboard",
-                link: "/dashboard",
-                icon: BsFillGridFill
-            },
+            // {
+            //     name: "Dashboard",
+            //     link: "/dashboard",
+            //     icon: BsFillGridFill
+            // },
             {
                 name: "Movies List",
                 link: "/movieslist",
                 icon: FaListAlt
             },
-            {
-                name: "Add Movie",
-                link: "/addmovie",
-                icon: RiMovie2Fill
-            },
+            // {
+            //     name: "Add Movie",
+            //     link: "/addmovie",
+            //     icon: RiMovie2Fill
+            // },
             {
                 name: "Users",
                 link: "/users",
