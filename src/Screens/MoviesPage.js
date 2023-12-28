@@ -34,7 +34,7 @@ export default function MoviesPage() {
 
     return (
         <Layout searchTitle={title}>
-            <div className="min-h-screen container mx-auto px-2 my-6">
+            <div className="px-5">
 
                 {/* Filters */}
                 <Filters handleFilter={handleFilter} movieTitle={title}/>

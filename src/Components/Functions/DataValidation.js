@@ -1,6 +1,7 @@
 export function nameIsValid(name) {
     const minLength = 3;
-    const isAlphanumeric = /^[a-zA-Z0-9_]+$/.test(name);
+    name = name.trim();
+    const isAlphanumeric = /^[a-zA-Z0-9_\s]+$/.test(name);
 
     if (name.length < minLength) {
         alert("Nickname must be at least 3 characters long");

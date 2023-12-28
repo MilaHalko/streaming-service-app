@@ -47,15 +47,14 @@ function Filters({handleFilter, movieTitle}) {
     }
 
     return (
-        <div
-            className={`bg-dry border text-dryGray border-border grid grid-cols-${Filter.length + 1} gap-6 rounded-lg p-4`}>
+        <div className={`bg-dry border text-dryGray border-border md:grid md:grid-cols-${Filter.length + 1} gap-6 rounded-lg p-4`}>
             {
                 Filter.map((item, index) => (
                     <Listbox key={index} value={item.value} onChange={item.onchange}>
                         <div className="relative">
 
                             {/* Filter title */}
-                            <Listbox.Button className="relative border border-border w-full text-white bg-main rounded-lg cursor-default py-4 pl-6 pr-10 text-left text-xs">
+                            <Listbox.Button className="relative border border-border w-full text-white bg-main rounded-lg cursor-default py-4 pl-6 pr-10 text-left text-xs mb-2 md:mb-0">
                                 <span className='block truncate'>{item.value.title}</span>
                                 <span className='absolute inset-y-0 right-0 flex items-center pointer-events-none pr-2'>
                                     <FaAngleDown className='w-4 h-4 text-gray-400' aria-hidden='true'/>
@@ -96,8 +95,7 @@ function Filters({handleFilter, movieTitle}) {
                 ))
             }
 
-            <RedBorderBlackButton title='Search' onClick={handleSearch}/>
-
+            <RedBorderBlackButton title='Search' onClick={handleSearch} className='w-full md:w-auto'/>
         </div>
     )
 }

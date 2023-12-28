@@ -107,9 +107,9 @@ function Account() {
                     <RedButton title={'Delete Account'} onClick={handleUserDelete}/>
                     {
                         editMode ?
-                            (<RedBorderBlackButton title={'Save'} onClick={handleUserUpdate}/>)
+                            (<RedBorderBlackButton title={'Save'} onClick={handleUserUpdate} className={'w-full sm:w-auto'}/>)
                             :
-                            (<RedBorderBlackButton title={'Edit Profile'} onClick={() => setEditMode(true)}/>)
+                            (<RedBorderBlackButton title={'Edit Profile'} onClick={() => setEditMode(true)} className={'w-full sm:w-auto'}/>)
                     }
                 </div>
             </div>

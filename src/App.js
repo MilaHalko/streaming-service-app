@@ -13,9 +13,7 @@ import Account from "./Screens/Dashboard/Account";
 import AOS from "aos";
 import FavoriteMovies from "./Screens/Dashboard/FavoriteMovies";
 import MoviesList from "./Screens/Dashboard/Admin/MovieList";
-import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
 import Users from "./Screens/Dashboard/Admin/Users";
-import AddMovie from "./Screens/Dashboard/Admin/AddMovie";
 import DrawerContext from "./Context/DrawerContext";
 import {AuthContextProvider} from "./Context/AuthContext";
 import ScrollOnTop from "./Components/Functions/ScrollOnTop";
@@ -57,13 +55,15 @@ function App() {
                                 {/*        <Dashboard/>*/}
                                 {/*    </ProtectedRoute>*/}
                                 {/*}/>*/}
+
+                                // TODO: permission bug (admin is undefined)
                                 <Route path="/movieslist" element={
-                                    <ProtectedRoute admin={true}>
+                                    <ProtectedRoute admin={false}>
                                         <MoviesList/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route path="/users" element={
-                                    <ProtectedRoute admin={true}>
+                                    <ProtectedRoute admin={false}>
                                         <Users/>
                                     </ProtectedRoute>
                                 }/>
