@@ -34,7 +34,6 @@ function App() {
                                 <Route path="/about-us" element={<AboutUs/>}/>
                                 <Route path="/contact-us" element={<ContactUs/>}/>
                                 {/*<Route path="/movies" element={<MoviesPage/>}/>*/}
-                                <Route path="/movies" element={<MoviesPage/>}/>
                                 <Route path="/movies/:title" element={<MoviesPage/>}/>
                                 <Route path="/movie/:id/:title" element={<SingleMovie/>}/>
                                 <Route path="/watch/:id/:title" element={<WatchPage/>}/>

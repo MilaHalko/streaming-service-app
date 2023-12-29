@@ -9,7 +9,7 @@ import requests from "../../Requests";
 function NavBar({searchTitle}) {
     const {user, logout} = UserAuth()
     const navigate = useNavigate()
-    const [movieToSearch, setMovieToSearch] = React.useState('')
+    const [movieToSearch, setMovieToSearch] = React.useState(searchTitle !== "Popular" ? searchTitle : '');
 
     const handleLogout = async () => {
         try {
@@ -28,7 +28,7 @@ function NavBar({searchTitle}) {
     }
 
     const handleSearch = () => {
-        navigate(`/movies/${movieToSearch}`)
+        movieToSearch === '' ? navigate(`/movies/Popular`) : navigate(`/movies/${movieToSearch}`)
     }
 
     const hover = 'hover:text-subMain transitions text-white';
@@ -36,7 +36,8 @@ function NavBar({searchTitle}) {
 
     return (
         <div className='bg-main shadow-md sticky top-0 z-20'>
-            <div className='sm:py-6 py-2 sm:px-14 px-2 grid lg:gap-10 gap-4 grid-cols-3 lg:grid-cols-7 justify-between items-center'>
+            <div
+                className='sm:py-6 py-2 sm:px-14 px-2 grid lg:gap-10 gap-4 grid-cols-3 lg:grid-cols-7 justify-between items-center'>
 
                 {/*Logo*/}
                 <div className='col-span-1 lg:block hidden'>
@@ -56,15 +57,16 @@ function NavBar({searchTitle}) {
                         <input type='text'
                                onKeyDown={handleKeyDown}
                                onChange={(e) => setMovieToSearch(e.target.value)}
+                               value={movieToSearch}
                                placeholder='Search Movie...'
-                            {...searchTitle && {defaultValue: searchTitle}}
                                className='font-medium placeholder:text-border text-base w-11/12 h-12 bg-transparent border-none px-2 text-black'/>
                     </form>
                 </div>
 
                 {/*Navigation*/}
-                <div className='col-span-3 font-bold text-base hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center'>
-                    <NavLink to={`/movies/${""}`} className={Hover}>
+                <div
+                    className='col-span-3 font-bold text-base hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center'>
+                    <NavLink to={`/movies/Popular`} className={Hover}>
                         Movies
                     </NavLink>
                     <NavLink to='/about-us' className={Hover}>
@@ -80,13 +82,13 @@ function NavBar({searchTitle}) {
                                 <NavLink to='/account' className={Hover}>
                                     <CgUser className='w-8 h-8'/>
                                 </NavLink>
-                                <button onClick={handleLogout} className={`${Hover({ isActive: false })} relative`}>
+                                <button onClick={handleLogout} className={`${Hover({isActive: false})} relative`}>
                                     <PiSignInBold className='w-6 h-6'/>
                                 </button>
                             </>
                         ) : (
                             /*Navigation For Guest User*/
-                            <NavLink to='/login' className={`${Hover({ isActive: false })} relative`}>
+                            <NavLink to='/login' className={`${Hover({isActive: false})} relative`}>
                                 <CgUser className='w-8 h-8'/>
                             </NavLink>
                         )

@@ -93,6 +93,7 @@ export function MovieContextProvider({children}) {
     }
 
     async function GetMoviesByRequest2(request, movieCount) {
+        if (movieCount === undefined) movieCount = 1000
         const loadMovies = async () => {
             let shouldContinue = true;
             let tempMovies = [];

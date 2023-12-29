@@ -5,31 +5,52 @@ import Movie from "../Components/Movie";
 import {CgSpinner} from "react-icons/cg";
 import requests from "../Requests";
 import {MovieContextConsumer} from "../Context/MovieContext";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 export default function MoviesPage() {
     const {GetMoviesByRequest2} = MovieContextConsumer()
     const {title} = useParams()
     const maxPage = 20;
+    const [request, setRequest] = useState(requests.requestPopular);
     const [page, setPage] = useState(maxPage);
-    const [filterRequest, setFilterRequest] = useState(requests.requestPopular);
     const [Movies, setMovies] = useState([]);
-    // const Movies = title ? GetMoviesByRequest(requests.requestTitle(title)) : GetMoviesByRequest(filterRequest);
 
     React.useEffect(() => {
+        if (title && title !== 'Popular') setRequest(requests.requestTitle(title))
         const fetchMovies = async () => {
-            setMovies(await GetMoviesByRequest2(filterRequest, page))
+            const movies = await GetMoviesByRequest2(request, page)
+            setMovies(movies)
         }
         fetchMovies()
-    }, [filterRequest])
+    }, [request, page])
 
     const handleLoadMore = () => {
         setPage(page + maxPage);
     }
 
-    const handleFilter = (request) => {
-        setFilterRequest(request)
-        setPage(maxPage)
+    const handleFilter = (genre, year) => {
+
+        if (title && title === 'Popular') {
+            setRequest(requests.requestMovies(year, genre))
+        }
+
+        else {
+            if (title) setRequest(requests.requestTitle(title))
+
+            setMovies(Movies.filter(movie => {
+                let genrePass = true
+                let yearPass = true
+                if (genre) {
+                    const movieGenre = movie.genre_ids
+                    genrePass = movieGenre.includes(genre)
+                }
+                if (year) {
+                    const movieYear = movie.release_date.substring(0, 4)
+                    yearPass = movieYear === `${year}`
+                }
+                return genrePass && yearPass
+            }))
+        }
     }
 
     return (
@@ -37,9 +58,9 @@ export default function MoviesPage() {
             <div className="px-5">
 
                 {/* Filters */}
-                <Filters handleFilter={handleFilter} movieTitle={title}/>
+                <Filters handleFilter={handleFilter}/>
                 <p className='text-lg font-medium my-6'>
-                    Total <span className='font-bold text-subMain'>{Movies.length}</span>{' '} movies found
+                    {/*Total <span className='font-bold text-subMain'>{Movies.length}</span>{' '} movies found*/}
                 </p>
 
                 {/* Movies */}

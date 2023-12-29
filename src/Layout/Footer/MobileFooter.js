@@ -21,7 +21,7 @@ function MobileFooter() {
             </div>
             <footer className="lg:hidden fixed z-50 bottom-0 w-full shadow-black shadow-lg">
                 <div className="bg-dry flex-btn w-full py-1 xs:px-9 px-1">
-                    <NavLink to="/movies" className={Hover}>
+                    <NavLink to="/movies/Popular" className={Hover}>
                         <BsCollectionPlay/>
                     </NavLink>
 
