@@ -55,7 +55,6 @@ function App() {
                                 {/*    </ProtectedRoute>*/}
                                 {/*}/>*/}
 
-                                // TODO: permission bug (admin is undefined)
                                 <Route path="/movieslist" element={
                                     <ProtectedRoute admin={false}>
                                         <MoviesList/>
