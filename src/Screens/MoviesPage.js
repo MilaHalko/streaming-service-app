@@ -30,13 +30,16 @@ export default function MoviesPage() {
 
     const handleFilter = (genre, year) => {
 
+        // Simple Request for All Movies
         if (title && title === 'Popular') {
             setRequest(requests.requestMovies(year, genre))
         }
 
+        // Request for Movies by Title
         else {
             if (title) setRequest(requests.requestTitle(title))
 
+            // Filter Movies by Genre and Year
             setMovies(Movies.filter(movie => {
                 let genrePass = true
                 let yearPass = true

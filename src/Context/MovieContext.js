@@ -1,5 +1,5 @@
 import React, {createContext, useContext} from 'react'
-import {arrayRemove, arrayUnion, doc, getDoc, onSnapshot, updateDoc} from "firebase/firestore";
+import {arrayRemove, arrayUnion, doc, getDoc, updateDoc} from "firebase/firestore";
 import {db} from "../firebase";
 import {UserAuth} from "./AuthContext";
 import axios from "axios";
