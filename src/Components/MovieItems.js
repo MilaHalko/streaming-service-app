@@ -3,7 +3,7 @@ import {GetMovieGenres} from "./Functions/GetMovieGenres";
 import {FaRegCalendarAlt} from "react-icons/fa";
 
 function MovieItems({movie}) {
-    let genres = movie.genres ? movie.genres.map(genre => genre.name) : GetMovieGenres(movie)
+    let genres = movie.genre_ids && GetMovieGenres(movie)
 
     return (
         <div className="flex flex-col gap-2">

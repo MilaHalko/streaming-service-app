@@ -4,7 +4,6 @@ import {IoSearchSharp} from "react-icons/io5";
 import {CgUser} from "react-icons/cg";
 import {UserAuth} from "../../Context/AuthContext";
 import {PiSignInBold} from "react-icons/pi";
-import requests from "../../Requests";
 
 function NavBar({searchTitle}) {
     const {user, logout} = UserAuth()

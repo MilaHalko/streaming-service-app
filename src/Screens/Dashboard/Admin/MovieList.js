@@ -6,7 +6,7 @@ import requests from "../../../Requests";
 
 function MoviesList() {
     const {GetMoviesByRequest} = MovieContextConsumer()
-    const movies = GetMoviesByRequest(requests.requestUpcoming, 100)
+    const movies = GetMoviesByRequest(requests.requestMovies(new Date().getFullYear() + 1, ""))
 
     return (
         <SideBar>

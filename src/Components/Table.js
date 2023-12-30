@@ -5,7 +5,6 @@ import {MovieContextConsumer} from "../Context/MovieContext";
 const Head = "text-xs text-left text-main font-semibold px-4 py-2 uppercase";
 
 function Table({movies}) {
-    const {GetMovieById} = MovieContextConsumer()
 
     return (
         <div className="overflow-x-auto w-full rounded-t-md">

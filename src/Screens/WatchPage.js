@@ -46,7 +46,7 @@ function WatchPage() {
                             <source src={`/videos/trailers/Dota 2 - Join the Battle.mp4`} type="video/mp4" title={movie?.name}/>
                         </video>
                     ) : (
-                        <div className='w-full h-screen rounded-lg overflow-hidden relative'>
+                        <div className='w-full h-max rounded-lg overflow-hidden relative'>
                             <div className='absolute top-0 left-0 bottom-0 right-0 bg-main bg-opacity-30 flex-colo'>
                                 <button onClick={() => setPlay(true)}
                                         className='bg-white text-subMain flex-colo border border-subMain rounded-full w-20 h-20 font-medium text-xl'>

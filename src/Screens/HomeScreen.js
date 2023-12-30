@@ -3,7 +3,6 @@ import Layout from "../Layout/Layout";
 import Banner from "../Components/Home/Banner";
 import MoviesBlock from "../Components/Home/MoviesBlock";
 import Promos from "../Components/Home/Promos";
-import TopRated from "../Components/Home/TopRated";
 import requests from "../Requests";
 
 function HomeScreen() {

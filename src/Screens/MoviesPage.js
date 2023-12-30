@@ -5,7 +5,7 @@ import Movie from "../Components/Movie";
 import {CgSpinner} from "react-icons/cg";
 import requests from "../Requests";
 import {MovieContextConsumer} from "../Context/MovieContext";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 export default function MoviesPage() {
     const {GetMoviesByRequest2} = MovieContextConsumer()

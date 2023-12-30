@@ -3,8 +3,6 @@ import {Listbox, Transition} from "@headlessui/react";
 import {FaAngleDown, FaCheck} from "react-icons/fa";
 import {GetAllGenres} from "./Functions/GetMovieGenres";
 import RedBorderBlackButton from "./Buttons/RedBorderBlackButton";
-import {useNavigate} from "react-router-dom";
-import requests from "../Requests";
 
 function Filters({handleFilter}) {
     const allGenres = GetAllGenres()
@@ -14,7 +12,7 @@ function Filters({handleFilter}) {
     ]
 
     const minYear = 1900;
-    const maxYear = 2025;
+    const maxYear = new Date().getFullYear();
     const YearsData = [
         {title: 'Year'},
         ...Array.from({length: maxYear - minYear}, (_, i) => ({title: maxYear - i})),
@@ -37,7 +35,6 @@ function Filters({handleFilter}) {
     ]
 
     const handleSearch = () => {
-        console.log(genre.title, year.title)
         const genreID = genre.title !== "Genre" ? allGenres.find(item => item.name === genre.title).id : null
         const yearID = year.title !== "Year" ? year.title : null
         handleFilter(genreID, yearID)

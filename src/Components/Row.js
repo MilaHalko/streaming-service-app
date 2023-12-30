@@ -6,7 +6,7 @@ import {GetMovieGenres} from "./Functions/GetMovieGenres";
 const Text = "text-xs text-left leading-6 px-4 py-3";
 
 function Row({movie, index}) {
-    const genres = GetMovieGenres(movie)
+    const genres = movie.genres ? movie.genres.map(genre => genre.name) : []
     const navigate = useNavigate()
 
     return (

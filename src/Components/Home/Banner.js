@@ -3,9 +3,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import MovieItems from "../MovieItems";
 import {Link} from "react-router-dom";
-import axios from "axios";
 import MovieImage from "../MovieImage";
-import MovieLikeButton from "../Buttons/MovieLikeButton";
 import {MovieContextConsumer} from "../../Context/MovieContext";
 
 function Banner({fetchUrl}) {
