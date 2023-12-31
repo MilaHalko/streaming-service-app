@@ -4,6 +4,7 @@ import {FaPlay} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import MovieImage from "../MovieImage";
 import MovieLikeButton from "../Buttons/MovieLikeButton";
+import {UserAuth} from "../../Context/AuthContext";
 
 function MovieInfo({movie}) {
     return (

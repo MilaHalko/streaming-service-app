@@ -6,12 +6,23 @@ import {FaPlay} from "react-icons/fa";
 import {MovieContextConsumer} from "../Context/MovieContext";
 import MovieLikeButton from "../Components/Buttons/MovieLikeButton";
 import MovieImage from "../Components/MovieImage";
+import {UserAuth} from "../Context/AuthContext";
 
 function WatchPage() {
     let {id} = useParams();
     console.log(id)
     const {GetMovieById2} = MovieContextConsumer()
+    const {user} = UserAuth()
     const [movie, setMovie] = useState(null)
+
+    const handleWatchButtonClicked = () => {
+        if (user?.email) {
+            setPlay(true)
+        }
+        else {
+            alert('Please login to watch movie')
+        }
+    }
 
     React.useEffect(() => {
         const loadMovie = async (id) => {
@@ -39,6 +50,9 @@ function WatchPage() {
                     </div>
                 </div>
 
+                {
+                    console.log(play, movie)
+                }
                 {/* Video Section */}
                 {
                     play ? (
@@ -48,7 +62,7 @@ function WatchPage() {
                     ) : (
                         <div className='w-full h-max rounded-lg overflow-hidden relative'>
                             <div className='absolute top-0 left-0 bottom-0 right-0 bg-main bg-opacity-30 flex-colo'>
-                                <button onClick={() => setPlay(true)}
+                                <button onClick={handleWatchButtonClicked}
                                         className='bg-white text-subMain flex-colo border border-subMain rounded-full w-20 h-20 font-medium text-xl'>
                                     <FaPlay/>
                                 </button>
